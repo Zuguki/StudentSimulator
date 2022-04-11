@@ -17,6 +17,19 @@
 # Recordings can get excessive in size
 /[Rr]ecordings/
 
+# Obsidian
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.trash
+ehthumbs.db
+Thumbs.db
+
+.obsidian
+*.css
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
@@ -71,15 +84,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# Obsidian
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-.trash
-ehthumbs.db
-Thumbs.db
 
-.obsidian
-*.css
