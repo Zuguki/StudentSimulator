@@ -23,20 +23,20 @@ public class ButtonsLoader : MonoBehaviour
    private void SetTitles(RectTransform rectT)
    {
       rectT.transform.localPosition = new Vector3(0f, 0f, 0f);
-      if (titles.Length > 0)
-      {
-         var prefabButton = Instantiate(buttonPrefab, transform);
-         var height = prefabButton.GetComponent<RectTransform>().rect.height;
-         var rectTransform = GetComponent<RectTransform>();
-         rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, height * titles.Length);
+      if (titles.Length <= 0)
+         return;
+      
+      var prefabButton = Instantiate(buttonPrefab, transform);
+      var height = prefabButton.GetComponent<RectTransform>().rect.height;
+      var rectTransform = GetComponent<RectTransform>();
+      rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, height * titles.Length);
          
-         Destroy(prefabButton);
-         for (var index = 0; index < titles.Length; index++)
-         {
-            var prefab = Instantiate(buttonPrefab, transform);
-            prefab.GetComponentInChildren<Text>().text = titles[index];
-            _items.Add(prefab);
-         }
+      Destroy(prefabButton);
+      foreach (var title in titles)
+      {
+         var prefab = Instantiate(buttonPrefab, transform);
+         prefab.GetComponentInChildren<Text>().text = title;
+         _items.Add(prefab);
       }
    }
 }
