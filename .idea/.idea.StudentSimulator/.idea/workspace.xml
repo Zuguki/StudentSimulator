@@ -13,6 +13,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Meet/MentorGroupChats.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Meet/EventFromUniversity.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -68,6 +72,7 @@
       <workItem from="1649666485219" duration="1539000" />
       <workItem from="1650120692027" duration="516000" />
       <workItem from="1650278942817" duration="1009000" />
+      <workItem from="1650702534121" duration="1010000" />
     </task>
     <servers />
   </component>
