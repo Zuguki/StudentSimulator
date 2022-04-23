@@ -1,11 +1,11 @@
 ﻿namespace DefaultNamespace
 {
-    public class MentorGroupChats : IStatButton
+    public class CookMealInDorm : IStatButton
     {
         public StatType StateType => StatType.Meet;
 
-        public string Text => "Менторить чатики групп";
-
+        public string Text => "Приготовить еду в общаге";
+        
         public void Buffs()
         {
         }
