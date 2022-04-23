@@ -2,8 +2,10 @@
 {
     public interface IStatButton
     {
-        public string ButtonText { get; }
-
-        public void ButtonFunc();
+        public StatType StateType { get; }
+        
+        public string Text { get; }
+        public void Buffs(){}
     }
+
 }

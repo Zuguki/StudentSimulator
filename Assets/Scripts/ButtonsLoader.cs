@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class ButtonsLoader : MonoBehaviour
 
    private List<GameObject> _items = new();
    private VerticalLayoutGroup _group;
+   private List<IStatButton> _stats = new() {new EventFromUniversity(), new MentorGroupChats()};
 
    private void Start()
    {
@@ -28,13 +30,14 @@ public class ButtonsLoader : MonoBehaviour
          var prefabButton = Instantiate(buttonPrefab, transform);
          var height = prefabButton.GetComponent<RectTransform>().rect.height;
          var rectTransform = GetComponent<RectTransform>();
-         rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, height * titles.Length);
+         
+         rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, height * _stats.Count);
          
          Destroy(prefabButton);
-         for (var index = 0; index < titles.Length; index++)
+         foreach (var statButton in _stats)
          {
             var prefab = Instantiate(buttonPrefab, transform);
-            prefab.GetComponentInChildren<Text>().text = titles[index];
+            prefab.GetComponentInChildren<Text>().text = statButton.Text;
             _items.Add(prefab);
          }
       }
