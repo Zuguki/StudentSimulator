@@ -6,6 +6,6 @@
         Meet,
         Respect,
         Money,
-        Goo
+        Liquid
     }
 }

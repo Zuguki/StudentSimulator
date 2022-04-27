@@ -31,7 +31,6 @@ public class ButtonsLoader : MonoBehaviour
    private void SetTitles(Component rectT)
    {
       var currentState = _stats.Where(stat => stat.StateType == statType).ToList();
-      var titles = currentState.Select(btn => btn.Text);
       rectT.transform.localPosition = new Vector3(0f, 0f, 0f);
 
       if (currentState.Count <= 0)
@@ -43,20 +42,12 @@ public class ButtonsLoader : MonoBehaviour
       rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, height * currentState.Count);
 
       Destroy(prefabButton);
-      foreach (var title in titles)
+
+      foreach (var statButton in currentState)
       {
          var prefab = Instantiate(buttonPrefab, transform);
-         prefab.GetComponentInChildren<Text>().text = title;
-
-         rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, height * currentState.Count);
-
-         Destroy(prefabButton);
-         foreach (var statButton in currentState)
-         {
-            prefab = Instantiate(buttonPrefab, transform);
-            prefab.GetComponentInChildren<Text>().text = statButton.Text;
-            _items.Add(prefab);
-         }
+         prefab.GetComponentInChildren<Text>().text = statButton.Text;
+         _items.Add(prefab);
       }
    }
 }
