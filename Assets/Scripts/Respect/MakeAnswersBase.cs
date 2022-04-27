@@ -2,7 +2,7 @@
 {
     public class MakeAnswersBase : IStatButton
     {
-        public StatType StateType => StatType.Liquid; 
+        public StatType StateType => StatType.Respect;
         public string Text => "Делать базу ответов";
         public void Buffs()
         { }
