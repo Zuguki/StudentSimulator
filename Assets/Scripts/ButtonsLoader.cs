@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using DefaultNamespace.Respect;
 using DefaultNamespace.Science;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,8 @@ public class ButtonsLoader : MonoBehaviour
    private readonly List<IStatButton> _stats = new()
    {
       new EventFromUniversity(), new MentorGroupChats(),
-      new AskForNotesFromClassmates(), new EngageInVideoCourse()
+      new AskForNotesFromClassmates(), new EngageInVideoCourse(),
+      new GoToKillFish(), new MakeAnswersBase()
    };
 
    private void Start()
