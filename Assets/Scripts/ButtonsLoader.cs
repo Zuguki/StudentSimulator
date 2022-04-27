@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using DefaultNamespace.Money;
 using DefaultNamespace.Respect;
 using DefaultNamespace.Science;
 using UnityEngine;
@@ -20,7 +21,9 @@ public class ButtonsLoader : MonoBehaviour
    {
       new EventFromUniversity(), new MentorGroupChats(),
       new AskForNotesFromClassmates(), new EngageInVideoCourse(),
-      new GoToKillFish(), new MakeAnswersBase()
+      new GoToKillFish(), new MakeAnswersBase(),
+      new AskLiquid(), new TakeNeighbourLiquid(),
+      new SellTextBook(), new FixElectronic()
    };
 
    private void Start()
