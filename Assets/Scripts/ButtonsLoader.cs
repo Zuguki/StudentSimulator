@@ -54,6 +54,8 @@ public class ButtonsLoader : MonoBehaviour
       {
          var prefab = Instantiate(buttonPrefab, transform);
          prefab.GetComponentInChildren<Text>().text = statButton.Text;
+         var btn = prefab.GetComponent<Button>();
+         btn.onClick.AddListener(statButton.Buffs);
       }
    }
 }
