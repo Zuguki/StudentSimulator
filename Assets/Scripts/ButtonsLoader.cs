@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
@@ -14,22 +13,25 @@ public class ButtonsLoader : MonoBehaviour
    [SerializeField] private GameObject content;
    [SerializeField] private StatType statType;
 
-   private List<GameObject> _items = new();
-   private VerticalLayoutGroup _group;
-
    private readonly List<IStatButton> _stats = new()
    {
-      new EventFromUniversity(), new MentorGroupChats(),
-      new AskForNotesFromClassmates(), new EngageInVideoCourse(),
-      new GoToKillFish(), new MakeAnswersBase(),
-      new AskLiquid(), new TakeNeighbourLiquid(),
-      new SellTextBook(), new FixElectronic()
+      new WriteOffClassmate(), new PrepareYourself(), new PrepareAccordingToTextbooks(),
+      new AskForNotesFromClassmates(), new EngageInVideoCourse(), new HireTutor(),
+      
+      new ShareLiquid(), new OpenDoorNight(), new HelpWithHW(),
+      new MakeAnswersBase(), new GoToKillFish(), new OrderFood(),
+      
+      new EventFromUniversity(), new MentorGroupChats(), new MakeFriendsWithSopras(),
+      new GoToTheAlley(), new CookMealInDorm(),
+      
+      new TakeNeighbourLiquid(), new AskLiquid(), new TakeSoprovsLiquid(),
+      
+      new FixElectronic(), new SellConspects(), new SellTextBook()
    };
 
    private void Start()
    {
       var rectT = content.GetComponent<RectTransform>();
-      _group = GetComponent<VerticalLayoutGroup>();
       SetTitles(rectT);
    }
 
@@ -52,7 +54,6 @@ public class ButtonsLoader : MonoBehaviour
       {
          var prefab = Instantiate(buttonPrefab, transform);
          prefab.GetComponentInChildren<Text>().text = statButton.Text;
-         _items.Add(prefab);
       }
    }
 }
