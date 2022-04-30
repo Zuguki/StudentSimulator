@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class SceneUploader : MonoBehaviour
 {
-    public static StatType StatType;
-    
     private Button _back;
     private Button _stats;
     private Button _sciences;
@@ -17,6 +15,9 @@ public class SceneUploader : MonoBehaviour
 
     private void Awake()
     {
+        if (IsCurrentScene("Start"))
+            return;
+        
         _back = gameObject.transform.GetChild(0).GetComponent<Button>();
         _stats = gameObject.transform.GetChild(1).GetComponent<Button>();
         _sciences = gameObject.transform.GetChild(2).GetComponent<Button>();
@@ -28,6 +29,9 @@ public class SceneUploader : MonoBehaviour
 
     private void Start()
     {
+        if (IsCurrentScene("Start"))
+            return;
+        
         _back.onClick.AddListener(LoadMainScene);
         _stats.onClick.AddListener(LoadStatsScene);
         _sciences.onClick.AddListener(LoadSciencesScene);
@@ -37,13 +41,11 @@ public class SceneUploader : MonoBehaviour
         _shop.onClick.AddListener(LoadShopScene);
     }
 
+    public static void LoadStatsScene() => SceneManager.LoadScene("Stats");
+    
     private static void LoadMainScene() => SceneManager.LoadScene("Start");
 
-    private static void LoadMoneyScene()
-    {
-        SceneManager.LoadScene("Money");
-        StatType = StatType.Money;
-    }
+    private static void LoadMoneyScene() => SceneManager.LoadScene("Money");
 
     private static void LoadSciencesScene() => SceneManager.LoadScene("Scines");
 
@@ -53,5 +55,5 @@ public class SceneUploader : MonoBehaviour
 
     private static void LoadShopScene() => SceneManager.LoadScene("Start");
 
-    private static void LoadStatsScene() => SceneManager.LoadScene("Stats");
+    private bool IsCurrentScene(string name) => SceneManager.GetActiveScene() == SceneManager.GetSceneByName(name);
 }
