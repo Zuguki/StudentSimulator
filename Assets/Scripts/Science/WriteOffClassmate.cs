@@ -8,18 +8,21 @@ namespace DefaultNamespace.Science
 
         public string Text => "Списать у одногрупника, пока он не видит";
 
+        private int _science;
         private int _respect;
         
         public void Buffs()
         {
-            _respect = PlayerPrefs.GetInt("respect", 0);
+            _science = PlayerPrefs.GetInt("science", 0);
+            
             if (TryGetGoodBuff(out var buffValue))
             {
                 Debug.Log("Успешно списал");
-                _respect += buffValue;
+                _science += buffValue;
             }
             else
             {
+                _respect = PlayerPrefs.GetInt("respect", 0);
                 Debug.Log("Неуспешно :(");
                 _respect -= _respect - buffValue > 0 ? buffValue : _respect;
             }
@@ -37,7 +40,9 @@ namespace DefaultNamespace.Science
 
         private void UpdatePrefabValue()
         {
+            PlayerPrefs.SetInt("science", _science);
             PlayerPrefs.SetInt("respect", _respect);
+            
             PlayerStats.NeedsUpdate = true;
         }
     }
