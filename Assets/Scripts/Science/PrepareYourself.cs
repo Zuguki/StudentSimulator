@@ -17,6 +17,7 @@ namespace DefaultNamespace.Science
 
             if (TryGetGoodBuff(out var buff))
             {
+                Debug.Log("Вы успешно готовитесь самостоятельно");
                 _science += buff;
             }
             else
