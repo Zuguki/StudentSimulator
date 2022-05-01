@@ -31,7 +31,7 @@ namespace DefaultNamespace.Respect
 
         private bool TryGetGoodBuff(out int buffValue)
         {
-            var isGoodBuff = Random.Range(0, 100) > 40; 
+            var isGoodBuff = Random.Range(0, 100) > 65; 
             
             buffValue = isGoodBuff ? Random.Range(50, 75) : Random.Range(50, 100);
             return isGoodBuff;
@@ -40,6 +40,7 @@ namespace DefaultNamespace.Respect
         private void UpdatePrefabValue()
         {
             PlayerPrefs.SetInt("respect", _respect);
+            PlayerPrefs.SetInt("science", _science);
             PlayerStats.NeedsUpdate = true;
         }
     }
