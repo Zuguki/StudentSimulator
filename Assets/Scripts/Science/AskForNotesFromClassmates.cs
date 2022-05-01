@@ -23,7 +23,7 @@ namespace DefaultNamespace.Science
             }
             else
             {
-                Debug.Log("Не дали в этот раз");
+                Debug.Log("Не дали в этот раз, уважения мало...");
             }
             
             UpdatePrefabValue();
