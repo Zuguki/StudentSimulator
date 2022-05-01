@@ -29,6 +29,8 @@ namespace DefaultNamespace
                 Debug.Log($"У тебя нет денег на покупку продуктов, необходимо: {MealPrice}," +
                           $" или в общаге итак все сыты");
             }
+            
+            UpdatePrefabValue();
         }
         
          private bool TryGetGoodBuff(out int buffValue)

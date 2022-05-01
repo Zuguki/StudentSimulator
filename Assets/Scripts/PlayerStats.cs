@@ -53,7 +53,7 @@ public class PlayerStats : MonoBehaviour
     private void GetNewStats()
     {
         _science = PlayerPrefs.GetInt("science", 0);
-        _meeting = PlayerPrefs.GetInt("meeting", 0);
+        _meeting = PlayerPrefs.GetInt("meet", 0);
         _respect = PlayerPrefs.GetInt("respect", 0);
         _money = PlayerPrefs.GetInt("money", 0);
         _liquid = PlayerPrefs.GetInt("liquid", 0);
