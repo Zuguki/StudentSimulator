@@ -14,7 +14,11 @@ public class PlayerStats : MonoBehaviour
     private TextMeshProUGUI _moneyStat;
     private TextMeshProUGUI _liquidStat;
 
-    private int _science, _meeting, _respect, _money, _liquid;
+    private int _science;
+    private int _meet;
+    private int _respect;
+    private int _money;
+    private int _liquid;
 
     private void Awake()
     {
@@ -55,7 +59,7 @@ public class PlayerStats : MonoBehaviour
         GetNewStats();
 
         _scienceStat.text = _science.ToString();
-        _meetingStat.text = _meeting.ToString();
+        _meetingStat.text = _meet.ToString();
         _respectStat.text = _respect.ToString();
         _moneyStat.text = _money.ToString();
         _liquidStat.text = _liquid.ToString();
@@ -66,7 +70,7 @@ public class PlayerStats : MonoBehaviour
     private void GetNewStats()
     {
         _science = PlayerPrefs.GetInt("science", 0);
-        _meeting = PlayerPrefs.GetInt("meet", 0);
+        _meet = PlayerPrefs.GetInt("meet", 0);
         _respect = PlayerPrefs.GetInt("respect", 0);
         _money = PlayerPrefs.GetInt("money", 0);
         _liquid = PlayerPrefs.GetInt("liquid", 0);
