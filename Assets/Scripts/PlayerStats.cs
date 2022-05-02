@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
     public static bool NeedsUpdate;
     
     [SerializeField] private GameObject statObject;
+    [SerializeField] private bool isNewGame;
 
     private TextMeshProUGUI _scienceStat;
     private TextMeshProUGUI _meetingStat;
@@ -28,7 +29,19 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        if (isNewGame)
+            SetDefaultValues();
+        
         UpdateStatsText();
+    }
+
+    private void SetDefaultValues()
+    {
+        PlayerPrefs.SetInt("science", 0);
+        PlayerPrefs.SetInt("meet", 0);
+        PlayerPrefs.SetInt("respect", 0);
+        PlayerPrefs.SetInt("money", 0);
+        PlayerPrefs.SetInt("liquid", 0);
     }
 
     private void Update()
