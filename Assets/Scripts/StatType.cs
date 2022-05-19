@@ -6,6 +6,7 @@
         Meet,
         Respect,
         Money,
-        Liquid
+        Liquid,
+        Shop
     }
 }

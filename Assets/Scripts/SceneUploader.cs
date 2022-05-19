@@ -53,7 +53,7 @@ public class SceneUploader : MonoBehaviour
 
     private static void LoadMeetScene() => SceneManager.LoadScene("Meet");
 
-    private static void LoadShopScene() => SceneManager.LoadScene("Start");
+    private static void LoadShopScene() => SceneManager.LoadScene("Shop");
 
     private bool IsCurrentScene(string name) => SceneManager.GetActiveScene() == SceneManager.GetSceneByName(name);
 }
