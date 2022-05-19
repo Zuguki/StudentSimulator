@@ -777,6 +777,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 775823880628558522, guid: 1ec5eb74c3fd61e45988591cfd2be64f, type: 3}
+      propertyPath: isNewGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775823880628558522, guid: 1ec5eb74c3fd61e45988591cfd2be64f, type: 3}
+      propertyPath: hackSystem
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775823880628558522, guid: 1ec5eb74c3fd61e45988591cfd2be64f, type: 3}
       propertyPath: statObject
       value: 
       objectReference: {fileID: 1976397040}
