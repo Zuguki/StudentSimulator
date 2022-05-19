@@ -19,7 +19,7 @@ public class StatsManager : MonoBehaviour
         _respectText.text = _respect.ToString();
         _moneyText.text = _money.ToString();
         _liquidText.text = _liquid.ToString();
-        _timeText.text = _liquid.ToString();
+        _timeText.text = _time.ToString();
         _shopItemsText.text = ParseShopItemsText();
     }
 
