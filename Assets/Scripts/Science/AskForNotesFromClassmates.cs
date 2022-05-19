@@ -25,7 +25,7 @@ namespace DefaultNamespace.Science
             {
                 Debug.Log("Не дали в этот раз, уважения мало...");
             }
-            
+
             UpdatePrefabValue();
         }
         

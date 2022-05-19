@@ -4,6 +4,8 @@ namespace DefaultNamespace.Shop
 {
     public class Book : IStatButton
     {
+        public static string Name => "Учебник";
+        
         public StatType StateType => StatType.Shop;
         public string Text => "Учебник";
 
