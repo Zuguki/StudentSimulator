@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
-
     private TextMeshProUGUI _scienceText, _meetText, _respectText, _moneyText, _liquidText, _timeText, _shopItemsText;
 
     private int _science, _meet, _respect, _money, _liquid, _time;
 
     private void UpdateValues()
     {
+        SetStats();
+        
         _scienceText.text = _science.ToString();
         _meetText.text = _meet.ToString();
         _respectText.text = _respect.ToString();
@@ -46,14 +47,17 @@ public class StatsManager : MonoBehaviour
         _liquidText = transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>();
         _timeText = transform.GetChild(5).GetChild(1).GetComponent<TextMeshProUGUI>();
         _shopItemsText = transform.GetChild(6).GetChild(1).GetComponent<TextMeshProUGUI>();
+        
+        UpdateValues();
+    }
 
+    private void SetStats()
+    {
         _science = PlayerPrefs.GetInt("science");
         _meet = PlayerPrefs.GetInt("meet");
         _respect = PlayerPrefs.GetInt("respect");
         _money = PlayerPrefs.GetInt("money");
         _liquid = PlayerPrefs.GetInt("liquid");
         _time = PlayerPrefs.GetInt("time");
-        
-        UpdateValues();
     }
 }
