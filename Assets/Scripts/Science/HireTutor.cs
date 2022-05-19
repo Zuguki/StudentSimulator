@@ -11,7 +11,7 @@ namespace DefaultNamespace.Science
         private int _money;
         private int _science;
 
-        private const int TutorPrice = 250;
+        private const int TutorPrice = 1000;
         
         public void Buffs()
         {
@@ -36,7 +36,7 @@ namespace DefaultNamespace.Science
         {
             var isGoodBuff = _money > TutorPrice;
             
-            buffValue = isGoodBuff ? Random.Range(150, 200) : 0;
+            buffValue = isGoodBuff ? Random.Range(200, 250) : 0;
             return isGoodBuff;
         }
         

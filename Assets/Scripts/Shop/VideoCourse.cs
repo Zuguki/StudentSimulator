@@ -2,12 +2,12 @@
 
 namespace DefaultNamespace.Shop
 {
-    public class Book : IStatButton
+    public class VideoCourse : IStatButton
     {
         public StatType StateType => StatType.Shop;
-        public string Text => "Учебник";
+        public string Text => "Видео курс";
 
-        private const int BookPrice = 500;
+        private const int CoursePrice = 1000;
 
         private int _money;
 
@@ -15,14 +15,14 @@ namespace DefaultNamespace.Shop
         {
             _money = PlayerPrefs.GetInt("money");
 
-            if (_money >= BookPrice && !PlayerStats.Items.Contains(typeof(Book)))
+            if (_money >= CoursePrice && !PlayerStats.Items.Contains(typeof(VideoCourse)))
             {
-                PlayerStats.Items.Add(typeof(Book));
-                Debug.Log("Учебник теперь у вас");
+                PlayerStats.Items.Add(typeof(VideoCourse));
+                Debug.Log("Курс теперь у вас");
             }
             else
             {
-                Debug.Log("Денег то нет, ну или ты крутой, учебник уже у тебя");
+                Debug.Log("Денег то нет, ну или ты крутой, курс уже у тебя");
             }
             
             UpdatePrefabValue();
