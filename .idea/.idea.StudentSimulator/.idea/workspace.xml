@@ -43,6 +43,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "rider.run.widget.enabled.cache": "false",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -93,7 +94,7 @@
       <workItem from="1651323012662" duration="6279000" />
       <workItem from="1651421071631" duration="8050000" />
       <workItem from="1651492869638" duration="2084000" />
-      <workItem from="1652967440723" duration="8010000" />
+      <workItem from="1652967440723" duration="9112000" />
     </task>
     <servers />
   </component>
