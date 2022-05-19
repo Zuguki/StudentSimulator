@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -12,7 +9,7 @@ public class StatsManager : MonoBehaviour
 
     private int _science, _meet, _respect, _money, _liquid, _time;
 
-    public void UpdateValues()
+    private void UpdateValues()
     {
         _scienceText.text = _science.ToString();
         _meetText.text = _meet.ToString();
