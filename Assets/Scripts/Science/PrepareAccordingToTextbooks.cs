@@ -41,6 +41,5 @@ namespace DefaultNamespace.Science
             PlayerPrefs.SetInt("science", _science);
             PlayerStats.NeedsUpdate = true;
         }
-
     }
 }
