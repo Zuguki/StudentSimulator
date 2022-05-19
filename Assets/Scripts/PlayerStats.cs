@@ -70,8 +70,17 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        if (NeedsUpdate)
-            UpdateStatsText();
+        if (!NeedsUpdate)
+            return;
+        
+        ChangeTime();
+        UpdateStatsText();
+    }
+
+    private void ChangeTime()
+    {
+        _time--;
+        PlayerPrefs.SetInt("time", _time);
     }
 
     private void UpdateStatsText()
