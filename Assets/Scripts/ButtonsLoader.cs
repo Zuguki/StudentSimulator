@@ -4,6 +4,7 @@ using DefaultNamespace;
 using DefaultNamespace.Money;
 using DefaultNamespace.Respect;
 using DefaultNamespace.Science;
+using DefaultNamespace.Shop;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +27,9 @@ public class ButtonsLoader : MonoBehaviour
       
       new TakeNeighbourLiquid(), new AskLiquid(), new TakeSoprovsLiquid(),
       
-      new FixElectronic(), new SellConspects(), new SellTextBook()
+      new FixElectronic(), new SellConspects(), new SellTextBook(),
+      
+      new Book()
    };
 
    private void Start()

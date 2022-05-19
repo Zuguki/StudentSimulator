@@ -1,12 +1,16 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
     public static bool NeedsUpdate;
-    
+    public static List<Type> Items = new();
+
     [SerializeField] private GameObject statObject;
     [SerializeField] private bool isNewGame;
+    [SerializeField] private bool hackSystem;
 
     private TextMeshProUGUI _scienceStat;
     private TextMeshProUGUI _meetingStat;
@@ -35,11 +39,22 @@ public class PlayerStats : MonoBehaviour
     {
         if (isNewGame)
             SetDefaultValues();
+        if (hackSystem)
+            SetHackValues();
         
         UpdateStatsText();
     }
 
-    private void SetDefaultValues()
+    private static void SetHackValues()
+    {
+        PlayerPrefs.SetInt("science", 100000);
+        PlayerPrefs.SetInt("meet", 100000);
+        PlayerPrefs.SetInt("respect", 100000);
+        PlayerPrefs.SetInt("money", 100000);
+        PlayerPrefs.SetInt("liquid", 100000);
+    }
+
+    private static void SetDefaultValues()
     {
         PlayerPrefs.SetInt("science", 0);
         PlayerPrefs.SetInt("meet", 0);
