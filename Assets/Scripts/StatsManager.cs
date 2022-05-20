@@ -29,7 +29,7 @@ public class StatsManager : MonoBehaviour
         var sb = new StringBuilder();
         for (var index = 0; index < PlayerStats.Items.Count; index++)
         {
-            var propValue = PlayerStats.Items[index].GetProperty("Name")?.GetValue(PlayerStats.Items[index]);
+            var propValue = PlayerStats.Items[index].GetProperty("Text")?.GetValue(PlayerStats.Items[index]);
 
             sb.Append(index == 0 ? "" : ", ");
             sb.Append(propValue);
