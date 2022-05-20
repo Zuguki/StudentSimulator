@@ -18,12 +18,12 @@ namespace DefaultNamespace.Money
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Вау, никто не заметил тебя, крыска");
+                PlayerStats.EventText = "Вау, никто не заметил тебя, крыска";
                 _liquid += buffValue;
             }
             else
             {
-                Debug.Log("Лошара, тебя спалили");
+                PlayerStats.EventText = "Лошара, тебя спалили";
                 _respect -= _respect - buffValue > 0 ? buffValue : _respect;
             }
             

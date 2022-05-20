@@ -22,13 +22,13 @@ namespace DefaultNamespace.Money
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Вау, красавец, не думал, что у тебя получится");
+                PlayerStats.EventText = "Вау, красавец, не думал, что у тебя получится";
                 _liquid += buffValue;
             }
             else
             {
-                Debug.Log("Ну, в другой, раз, ты весь день извинялся, теперь у тебя нет жижи," +
-                          " меньше уважения и уровень подготовки");
+                PlayerStats.EventText = "Ну, в другой, раз, ты весь день извинялся, теперь у тебя нет жижи," +
+                                        " меньше уважения и уровень подготовки";
                 _respect -= _respect - buffValue > 0 ? buffValue : _respect;
                 _science -= _science - buffValue > 0 ? buffValue : _science;
                 _liquid = 0;

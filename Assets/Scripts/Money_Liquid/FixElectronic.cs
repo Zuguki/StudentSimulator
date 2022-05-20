@@ -25,12 +25,12 @@ namespace DefaultNamespace.Money
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("О, теперь мы делаем бизнес");
+                PlayerStats.EventText = "О, теперь мы делаем бизнес";
                 _money += buffValue;
             }
             else
             {
-                Debug.Log("Так, ну тут, либо заказов нет, либо знаний нет, либо срукожопил где то");
+                PlayerStats.EventText = "Так, ну тут, либо заказов нет, либо знаний нет, либо срукожопил где то";
                 _meet -= _meet - buffValue > 0 ? buffValue : _meet;
                 _science -= _science - buffValue > 0 ? buffValue : _science;
                 _respect -= _respect - buffValue > 0 ? buffValue : _respect;

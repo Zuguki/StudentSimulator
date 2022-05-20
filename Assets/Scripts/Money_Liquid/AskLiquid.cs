@@ -20,13 +20,11 @@ namespace DefaultNamespace.Money
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Вау, ты крут, тебе ДАЛИ залить (жижу)");
+                PlayerStats.EventText = "Вау, ты крут, тебе ДАЛИ залить (жижу)";
                 _liquid += buffValue;
             }
             else
-            {
-                Debug.Log("Эх, опять жижла не дали");
-            }
+                PlayerStats.EventText = "Эх, опять жижла не дали";
             
             UpdatePrefabValue();
         }
