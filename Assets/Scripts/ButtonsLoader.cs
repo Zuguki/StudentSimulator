@@ -30,7 +30,7 @@ public class ButtonsLoader : MonoBehaviour
       
       new FixElectronic(), new SellConspects(), new SellTextBook(),
       
-      new Book(), new VideoCourse()
+      new Book(), new VideoCourse(), new Exam()
    };
 
    private void Start()
