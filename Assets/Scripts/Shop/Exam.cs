@@ -21,10 +21,10 @@ namespace DefaultNamespace.Shop
             if (_money >= ExamPrice && !PlayerStats.Items.Contains(typeof(Exam)))
             {
                 PlayerStats.Items.Add(typeof(Exam));
-                PlayerStats.EventText = "Учебник теперь у вас";
+                PlayerStats.EventText = "Вы купили сдачу экзаменов, теперь вам ничего не угрожает";
             }
             else
-                PlayerStats.EventText = "Денег то нет, ну или ты крутой, учебник уже у тебя";
+                PlayerStats.EventText = "У вас недостаточно денег";
             
             UpdatePrefabValue();
         }
