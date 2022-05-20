@@ -7,7 +7,8 @@ namespace DefaultNamespace
         public StatType StateType => StatType.Meet;
 
         public string Text => "Менторить чатики групп";
-        
+        public string NeedPay => $"{SciencePrice} знаний";
+
         private const int SciencePrice = 250;
 
         private int _science;

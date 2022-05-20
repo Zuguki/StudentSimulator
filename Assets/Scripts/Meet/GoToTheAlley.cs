@@ -7,6 +7,7 @@ namespace DefaultNamespace
         public StatType StateType => StatType.Meet;
 
         public string Text => "Пить на аллейкe";
+        public string NeedPay => $"{DrinkPrice}р";
 
         private const int DrinkPrice = 500;
 

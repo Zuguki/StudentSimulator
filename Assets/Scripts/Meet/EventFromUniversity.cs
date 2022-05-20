@@ -11,6 +11,7 @@ namespace DefaultNamespace
     {
         public StatType StateType => StatType.Meet;
         public string Text => "Участвовать в ивенте от вуза";
+        public string NeedPay => $"{SciencePrice} знаний";
 
         private const int SciencePrice = 200;
 

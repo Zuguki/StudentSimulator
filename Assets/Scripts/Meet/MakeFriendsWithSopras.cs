@@ -7,6 +7,7 @@ namespace DefaultNamespace
         public StatType StateType => StatType.Meet;
         
         public string Text => "Скорешиться с сопрами";
+        public string NeedPay => $"{NeedsRespectStat} уважения";
 
         private const int NeedsRespectStat = 5000;
 
