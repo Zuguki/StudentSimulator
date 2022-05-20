@@ -6,7 +6,8 @@ namespace DefaultNamespace.Respect
     {
         public StatType StateType => StatType.Respect;
         public string Text => "Заказать на соседей еды";
-        
+        public string NeedPay => $"{FoodPrice}р";
+
         private const int FoodPrice = 1000;
 
         private int _respect;

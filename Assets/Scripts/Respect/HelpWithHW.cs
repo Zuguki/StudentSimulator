@@ -6,6 +6,7 @@ namespace DefaultNamespace.Respect
     {
         public StatType StateType => StatType.Respect;
         public string Text => "Помочь с домашкой";
+        public string NeedPay => $"{ScienceNeed} знаний";
 
         private const int ScienceNeed = 3000;
 

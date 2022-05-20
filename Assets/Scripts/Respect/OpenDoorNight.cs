@@ -6,6 +6,7 @@ namespace DefaultNamespace.Respect
     {
         public StatType StateType => StatType.Respect;
         public string Text => "Открыть дверь в общагу ночью";
+        public string NeedPay => "";
 
         private int _respect;
         private int _science;

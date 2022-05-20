@@ -6,6 +6,7 @@ namespace DefaultNamespace.Respect
     {
         public StatType StateType => StatType.Respect;
         public string Text => "Делать базу ответов";
+        public string NeedPay => $"{MeetPrice} знакомств";
 
         private const int MeetPrice = 250;
 

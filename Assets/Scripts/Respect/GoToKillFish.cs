@@ -6,6 +6,7 @@ namespace DefaultNamespace.Respect
     {
         public StatType StateType => StatType.Respect;
         public string Text => "Позвать одногрупников в KillFish";
+        public string NeedPay => $"{KillFishPrice}р";
 
         private const int KillFishPrice = 1000;
 
