@@ -6,6 +6,7 @@ namespace DefaultNamespace.Money
     {
         public StatType StateType => StatType.Liquid;
         public string Text => "Забрать жижу у сопров";
+        public string NeedPay => $"{NeedRespect} уважения";
 
         private const int NeedRespect = 5000;
 
