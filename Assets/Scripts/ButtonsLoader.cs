@@ -56,7 +56,9 @@ public class ButtonsLoader : MonoBehaviour
       foreach (var statButton in currentState)
       {
          var prefab = Instantiate(buttonPrefab, transform);
-         prefab.GetComponentInChildren<Text>().text = statButton.Text;
+         prefab.transform.GetChild(0).GetComponent<Text>().text = statButton.Text;
+         prefab.transform.GetChild(1).GetComponent<Text>().text = statButton.NeedPay;
+         
          var btn = prefab.GetComponent<Button>();
          btn.onClick.AddListener(statButton.Buffs);
       }
