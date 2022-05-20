@@ -8,6 +8,7 @@ namespace DefaultNamespace.Shop
         
         public StatType StateType => StatType.Shop;
         public string Text => "Учебник";
+        public string NeedPay => $"{BookPrice}р";
 
         private const int BookPrice = 500;
 
