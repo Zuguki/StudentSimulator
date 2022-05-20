@@ -79,6 +79,7 @@ public class PlayerStats : MonoBehaviour
 
     private void ChangeTime()
     {
+        _time = PlayerPrefs.GetInt("time", _time);
         _time--;
         PlayerPrefs.SetInt("time", _time);
     }
