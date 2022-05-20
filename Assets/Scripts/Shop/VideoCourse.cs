@@ -21,12 +21,10 @@ namespace DefaultNamespace.Shop
             if (_money >= CoursePrice && !PlayerStats.Items.Contains(typeof(VideoCourse)))
             {
                 PlayerStats.Items.Add(typeof(VideoCourse));
-                Debug.Log("Курс теперь у вас");
+                PlayerStats.EventText = "Курс теперь у вас";
             }
             else
-            {
-                Debug.Log("Денег то нет, ну или ты крутой, курс уже у тебя");
-            }
+                PlayerStats.EventText = "Денег то нет, ну или ты крутой, курс уже у тебя";
             
             UpdatePrefabValue();
         }

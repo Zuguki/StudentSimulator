@@ -21,12 +21,10 @@ namespace DefaultNamespace.Shop
             if (_money >= BookPrice && !PlayerStats.Items.Contains(typeof(Book)))
             {
                 PlayerStats.Items.Add(typeof(Book));
-                Debug.Log("Учебник теперь у вас");
+                PlayerStats.EventText = "Учебник теперь у вас";
             }
             else
-            {
-                Debug.Log("Денег то нет, ну или ты крутой, учебник уже у тебя");
-            }
+                PlayerStats.EventText = "Денег то нет, ну или ты крутой, учебник уже у тебя";
             
             UpdatePrefabValue();
         }
