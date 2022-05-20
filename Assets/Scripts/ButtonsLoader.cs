@@ -5,6 +5,7 @@ using DefaultNamespace.Money;
 using DefaultNamespace.Respect;
 using DefaultNamespace.Science;
 using DefaultNamespace.Shop;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,7 +58,7 @@ public class ButtonsLoader : MonoBehaviour
       {
          var prefab = Instantiate(buttonPrefab, transform);
          prefab.transform.GetChild(0).GetComponent<Text>().text = statButton.Text;
-         prefab.transform.GetChild(1).GetComponent<Text>().text = statButton.NeedPay;
+         prefab.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = statButton.NeedPay;
          
          var btn = prefab.GetComponent<Button>();
          btn.onClick.AddListener(statButton.Buffs);
