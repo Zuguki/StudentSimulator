@@ -7,9 +7,8 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static readonly List<Type> Items = new();
-    
+
     public static bool NeedsUpdate;
-    public static bool NeedsShow;
     public static string EventText;
 
     [SerializeField] private GameObject statObject;
@@ -23,7 +22,7 @@ public class PlayerStats : MonoBehaviour
     private TextMeshProUGUI _moneyStat;
     private TextMeshProUGUI _liquidStat;
     private TextMeshProUGUI _timeStat;
-    
+
     private TextMeshProUGUI _eventText;
 
     private int _science;
@@ -36,7 +35,7 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         var statTransform = statObject.transform;
-        
+
         _scienceStat = statTransform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
         _meetingStat = statTransform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
         _respectStat = statTransform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
@@ -53,7 +52,7 @@ public class PlayerStats : MonoBehaviour
             SetDefaultValues();
         if (hackSystem)
             SetHackValues();
-        
+
         UpdateStatsText();
     }
 
@@ -98,7 +97,7 @@ public class PlayerStats : MonoBehaviour
         _eventText.text = EventText;
         eventPrefab.SetActive(true);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         eventPrefab.SetActive(false);
     }
 

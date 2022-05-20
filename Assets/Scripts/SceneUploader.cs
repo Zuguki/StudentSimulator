@@ -41,7 +41,7 @@ public class SceneUploader : MonoBehaviour
         _shop.onClick.AddListener(LoadShopScene);
     }
 
-    public static void LoadStatsScene() => SceneManager.LoadScene("Stats");
+    private static void LoadStatsScene() => SceneManager.LoadScene("Stats");
     
     private static void LoadMainScene() => SceneManager.LoadScene("Start");
 
