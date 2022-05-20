@@ -21,14 +21,14 @@ namespace DefaultNamespace
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Ты приготовил вкусное блюдо, теперь у тебя больше знакомых");
+                PlayerStats.EventText = "Ты приготовил вкусное блюдо, теперь у тебя больше знакомых";
                 _meet += buffValue;
                 _money -= MealPrice;
             }
             else
             {
-                Debug.Log($"У тебя нет денег на покупку продуктов, необходимо: {MealPrice}," +
-                          $" или в общаге итак все сыты");
+                PlayerStats.EventText = $"У тебя нет денег на покупку продуктов, необходимо: {MealPrice}," +
+                                        $" или в общаге итак все сыты";
             }
             
             UpdatePrefabValue();

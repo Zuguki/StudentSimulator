@@ -25,14 +25,12 @@ namespace DefaultNamespace
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Вы участвуете в ивенте, нашли новых друзей, но учеба просела");
+                PlayerStats.EventText = "Вы участвуете в ивенте, нашли новых друзей, но учеба просела";
                 _science -= SciencePrice;
                 _meet += buffValue;
             }
             else
-            {
-                Debug.Log($"Тебе надо учиться, не хватает: {SciencePrice - _science} знанаий");
-            }
+                PlayerStats.EventText = $"Тебе надо учиться, не хватает: {SciencePrice - _science} знанаий";
             
             UpdatePrefabValue();
         }

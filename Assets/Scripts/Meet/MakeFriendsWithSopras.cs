@@ -23,13 +23,13 @@ namespace DefaultNamespace
  
              if (TryGetGoodBuff(out var buffValue))
              {
-                 Debug.Log("Ты затусил с сопрами, теперь у тебя больше знакомых");
+                 PlayerStats.EventText = "Ты затусил с сопрами, теперь у тебя больше знакомых";
                  _meet += buffValue;
              }
              else
              {
-                 Debug.Log($"Тебя обосрали, в другой раз повезет, " +
-                           $"уважение должно быть больше {NeedsRespectStat}");
+                 PlayerStats.EventText = $"Тебя обосрали, в другой раз повезет, " +
+                                         $"уважение должно быть больше {NeedsRespectStat}";
                  _meet -= _meet - buffValue > 0 ? buffValue : _meet;
                  _respect -= _respect - buffValue > 0 ? buffValue : _respect;
                  _science -= _science - buffValue > 0 ? buffValue : _science;
