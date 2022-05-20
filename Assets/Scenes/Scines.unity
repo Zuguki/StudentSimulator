@@ -471,6 +471,10 @@ PrefabInstance:
       propertyPath: _statObject
       value: 
       objectReference: {fileID: 1826941759636573221}
+    - target: {fileID: 775823880628558522, guid: 1ec5eb74c3fd61e45988591cfd2be64f, type: 3}
+      propertyPath: eventPrefab
+      value: 
+      objectReference: {fileID: 6325124924498804451}
     - target: {fileID: 775823880628558523, guid: 1ec5eb74c3fd61e45988591cfd2be64f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -949,6 +953,11 @@ PrefabInstance:
 --- !u!224 &6325124924498804450 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4974518554606516751, guid: 29690519eb8993f4f87d0d2a180c887a, type: 3}
+  m_PrefabInstance: {fileID: 6325124924498804449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6325124924498804451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5309665517833021513, guid: 29690519eb8993f4f87d0d2a180c887a, type: 3}
   m_PrefabInstance: {fileID: 6325124924498804449}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8285012208620024693

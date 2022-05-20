@@ -1,14 +1,19 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public static bool NeedsUpdate;
     public static readonly List<Type> Items = new();
+    
+    public static bool NeedsUpdate;
+    public static bool NeedsShow;
+    public static string EventText;
 
     [SerializeField] private GameObject statObject;
+    [SerializeField] private GameObject eventPrefab;
     [SerializeField] private bool isNewGame;
     [SerializeField] private bool hackSystem;
 
@@ -18,6 +23,8 @@ public class PlayerStats : MonoBehaviour
     private TextMeshProUGUI _moneyStat;
     private TextMeshProUGUI _liquidStat;
     private TextMeshProUGUI _timeStat;
+    
+    private TextMeshProUGUI _eventText;
 
     private int _science;
     private int _meet;
@@ -36,6 +43,8 @@ public class PlayerStats : MonoBehaviour
         _moneyStat = statTransform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>();
         _liquidStat = statTransform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>();
         _timeStat = statTransform.GetChild(5).GetComponentInChildren<TextMeshProUGUI>();
+
+        _eventText = eventPrefab.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -72,9 +81,25 @@ public class PlayerStats : MonoBehaviour
     {
         if (!NeedsUpdate)
             return;
-        
+
+        ShowEvent();
         ChangeTime();
         UpdateStatsText();
+    }
+
+    private void ShowEvent()
+    {
+        StopAllCoroutines();
+        StartCoroutine(ShowEventCoroutine());
+    }
+
+    private IEnumerator ShowEventCoroutine()
+    {
+        _eventText.text = EventText;
+        eventPrefab.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+        eventPrefab.SetActive(false);
     }
 
     private void ChangeTime()
