@@ -18,13 +18,13 @@ namespace DefaultNamespace.Science
             
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Успешно списал");
+                PlayerStats.EventText = "Успешно списал";
                 _science += buffValue;
             }
             else
             {
                 _respect = PlayerPrefs.GetInt("respect", 0);
-                Debug.Log("Неуспешно :(");
+                PlayerStats.EventText = "Неуспешно :(";
                 _respect -= _respect - buffValue > 0 ? buffValue : _respect;
             }
 

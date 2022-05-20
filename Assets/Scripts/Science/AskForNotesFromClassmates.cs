@@ -24,9 +24,7 @@ namespace DefaultNamespace.Science
                 _science += buffValue;
             }
             else
-            {
                 PlayerStats.EventText = "Не дали в этот раз, уважения мало...";
-            }
 
             UpdatePrefabValue();
         }

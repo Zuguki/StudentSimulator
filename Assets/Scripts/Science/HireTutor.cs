@@ -23,12 +23,10 @@ namespace DefaultNamespace.Science
             {
                 _money -= TutorPrice;
                 _science += buffValue;
-                Debug.Log("Ну, нормально позанимались");
+                PlayerStats.EventText = "Ну, нормально позанимались";
             }
             else
-            {
-                Debug.Log("Бомжара, иди работай");
-            }
+                PlayerStats.EventText = "Бомжара, иди работай";
             
             UpdatePrefabValue();
         }

@@ -18,13 +18,11 @@ namespace DefaultNamespace.Science
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Хорош, позанимался");
+                PlayerStats.EventText = "Хорош, позанимался";
                 _science += buffValue;
             }
             else
-            {
-                Debug.Log("Тебе следует купить учебник!");
-            }
+                PlayerStats.EventText = "Тебе следует купить учебник!";
             
             UpdatePrefabValue();
         }
