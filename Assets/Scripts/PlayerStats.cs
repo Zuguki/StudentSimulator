@@ -84,6 +84,8 @@ public class PlayerStats : MonoBehaviour
         ShowEvent();
         ChangeTime();
         UpdateStatsText();
+        
+        // TODO: добавить конец игры
     }
 
     private void ShowEvent()
