@@ -18,12 +18,12 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Вау, тебя не спалили, молодец");
+                PlayerStats.EventText = "Вау, тебя не спалили, молодец";
                 _respect += buffValue;
             }
             else
             {
-                Debug.Log("Фааак, тебя спалили, подготовка к экзаменам ухудшилась, ведь ты весь день извинялся");
+                PlayerStats.EventText = "Фааак, тебя спалили, подготовка к экзаменам ухудшилась, ведь ты весь день извинялся";
                 _science -= _science - buffValue > 0 ? buffValue : _science;
             }
             

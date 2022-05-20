@@ -20,14 +20,14 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("О, ты успешно делаешь базу ответов, но тратишь на это много времени," +
-                          " количество знакомств уменьшилось");
+                PlayerStats.EventText = "О, ты успешно делаешь базу ответов, но тратишь на это много времени," +
+                                        " количество знакомств уменьшилось";
                 _respect += buffValue;
                 _meet -= MeetPrice;
             }
             else
             {
-                Debug.Log("Иди знакомься для начала, у тебя мало знакомых");
+                PlayerStats.EventText = "Иди знакомься для начала, у тебя мало знакомых";
             }
             
             UpdatePrefabValue();

@@ -20,14 +20,12 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Вы сходили в KillFish и успешно провели время");
+                PlayerStats.EventText = "Вы сходили в KillFish и успешно провели время";
                 _respect += buffValue;
                 _money -= KillFishPrice;
             }
             else
-            {
-                Debug.Log($"Заработай для начала, за тебя платить не будут необходимо: {KillFishPrice}");
-            }
+                PlayerStats.EventText = $"Заработай для начала, за тебя платить не будут необходимо: {KillFishPrice}";
             
             UpdatePrefabValue();
         }

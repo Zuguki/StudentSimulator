@@ -20,14 +20,12 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Молодец, ты спас соседа");
+                PlayerStats.EventText = "Молодец, ты спас соседа";
                 _liquid -= LiquidPrice;
                 _respect += buffValue;
             }
             else
-            {
-                Debug.Log($"У тебя недостаточно жижи! {LiquidPrice}");
-            }
+                PlayerStats.EventText = $"У тебя недостаточно жижи! {LiquidPrice}";
             
             UpdatePrefabValue();
         }

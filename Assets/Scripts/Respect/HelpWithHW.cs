@@ -20,13 +20,11 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                Debug.Log("Одногруппница тебе очень благодарна :)");
+                PlayerStats.EventText = "Одногруппница тебе очень благодарна :)";
                 _respect += buffValue;
             }
             else
-            {
-                Debug.Log("Ты рофлишь? Ты слишком тупой, чтобы помочь кому то");
-            }
+                PlayerStats.EventText = "Ты рофлишь? Ты слишком тупой, чтобы помочь кому то";
             
             UpdatePrefabValue();
         }
