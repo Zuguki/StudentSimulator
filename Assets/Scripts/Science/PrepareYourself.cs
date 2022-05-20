@@ -8,7 +8,9 @@ namespace DefaultNamespace.Science
         public StatType StateType => StatType.Science;
 
         public string Text => "Готовиться самому";
+        public string NeedPay => $"{Price} знаний";
 
+        private const int Price = 250;
         private int _science;
         
         public void Buffs()
@@ -30,7 +32,7 @@ namespace DefaultNamespace.Science
         
         private bool TryGetGoodBuff(out int buffValue)
         {
-            var isGoodBuff = _science > 250;
+            var isGoodBuff = _science >= 250;
             
             buffValue = isGoodBuff ? Random.Range(25, 75) : 0;
             return isGoodBuff;

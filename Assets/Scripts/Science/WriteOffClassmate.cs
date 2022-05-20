@@ -7,6 +7,7 @@ namespace DefaultNamespace.Science
         public StatType StateType => StatType.Science;
 
         public string Text => "Списать у одногрупника, пока он не видит";
+        public string NeedPay => "";
 
         private int _science;
         private int _respect;

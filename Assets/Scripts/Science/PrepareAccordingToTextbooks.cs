@@ -8,6 +8,7 @@ namespace DefaultNamespace.Science
         public StatType StateType => StatType.Science;
 
         public string Text => "Готовиться по учебникам";
+        public string NeedPay => "";
 
         private int _science;
         
