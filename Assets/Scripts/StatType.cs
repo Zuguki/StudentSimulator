@@ -7,6 +7,7 @@
         Respect,
         Money,
         Liquid,
-        Shop
+        Shop,
+        None
     }
 }
