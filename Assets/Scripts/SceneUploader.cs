@@ -57,4 +57,10 @@ public class SceneUploader : MonoBehaviour
 
     private static bool IsCurrentScene(string sceneName) => 
         SceneManager.GetActiveScene() == SceneManager.GetSceneByName(sceneName);
+
+    private static void LoadNewGame()
+    {
+        PlayerStats.IsNewGame = true;
+        SceneManager.LoadScene("Stats");
+    }
 }
