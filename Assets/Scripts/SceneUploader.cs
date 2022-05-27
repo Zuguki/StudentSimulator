@@ -13,6 +13,18 @@ public class SceneUploader : MonoBehaviour
     private Button _money;
     private Button _shop;
 
+    public static void LoadHackGame()
+    {
+        PlayerStats.HackSystem = true;
+        LoadStatsScene();
+    }
+
+    public static void LoadNewGame()
+    {
+        PlayerStats.IsNewGame = true;
+        LoadStatsScene();
+    }
+
     private void Awake()
     {
         if (IsCurrentScene("Start"))
@@ -54,18 +66,6 @@ public class SceneUploader : MonoBehaviour
     private static void LoadMeetScene() => SceneManager.LoadScene("Meet");
 
     private static void LoadShopScene() => SceneManager.LoadScene("Shop");
-
-    private static void LoadNewGame()
-    {
-        PlayerStats.IsNewGame = true;
-        LoadStatsScene();
-    }
-
-    private static void LoadHackGame()
-    {
-        PlayerStats.HackSystem = true;
-        LoadStatsScene();
-    }
 
     private static bool IsCurrentScene(string sceneName) =>
         SceneManager.GetActiveScene() == SceneManager.GetSceneByName(sceneName);
