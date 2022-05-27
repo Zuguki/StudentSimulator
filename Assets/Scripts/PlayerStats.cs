@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
@@ -14,7 +16,6 @@ public class PlayerStats : MonoBehaviour
     public static string EventText;
     public static bool IsNewGame;
     public static bool HackSystem;
-    public static string Json;
 
     private const float EventTime = 2f;
 
@@ -38,6 +39,7 @@ public class PlayerStats : MonoBehaviour
     private int _time;
 
     private int _previousItemsCount;
+    private bool _needsSerialize;
 
     private readonly Color _defaultColor = Color.black;
     private readonly Color _upgradeColor = Color.blue;
@@ -89,6 +91,10 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetInt("liquid", 0);
         PlayerPrefs.SetInt("time", 365);
 
+        Items = new List<Type>();
+        if (File.Exists("items.binary"))
+            File.Delete("items.binary");
+        
         IsNewGame = false;
     }
 
@@ -136,19 +142,30 @@ public class PlayerStats : MonoBehaviour
         UpdateStats(_timeStat, _time);
 
         if (_previousItemsCount != Items.Count)
-            UpdateJson();
+            UpdateData();
 
-        if (Json is not null)
-            Items = JsonUtility.FromJson<List<Type>>(Json);
-        
-        Json = null;
+        if (_needsSerialize)
+            UpdateItems();
+
+        _needsSerialize = false;
         NeedsUpdate = false;
     }
 
-    private void UpdateJson()
+    private void UpdateItems()
     {
+        using var fs = new FileStream("items.binary", FileMode.OpenOrCreate);
+        var bf = new BinaryFormatter();
+        Items = (List<Type>) bf.Deserialize(fs);
+    }
+
+    private void UpdateData()
+    {
+        using var fs = new FileStream("items.binary", FileMode.OpenOrCreate);
         _previousItemsCount = Items.Count;
-        Json = JsonUtility.ToJson(Items);
+        var bf = new BinaryFormatter();
+        bf.Serialize(fs, Items);
+
+        _needsSerialize = true;
     }
 
     private void SetNewStats()
