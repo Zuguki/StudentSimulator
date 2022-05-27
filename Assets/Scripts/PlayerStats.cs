@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerStats : MonoBehaviour
     public static string EventText;
     public static bool IsNewGame;
     public static bool HackSystem;
+
+    private const float EventTime = 2f;
 
     [SerializeField] private GameObject statObject;
     [SerializeField] private GameObject eventPrefab;
@@ -31,6 +34,10 @@ public class PlayerStats : MonoBehaviour
     private int _money;
     private int _liquid;
     private int _time;
+
+    private readonly Color _defaultColor = Color.black;
+    private readonly Color _upgradeColor = Color.blue;
+    private readonly Color _downgradeColor = Color.red; 
 
     private void Awake()
     {
@@ -75,7 +82,7 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetInt("respect", 0);
         PlayerPrefs.SetInt("money", 0);
         PlayerPrefs.SetInt("liquid", 0);
-        PlayerPrefs.SetInt("time", 4);
+        PlayerPrefs.SetInt("time", 365);
 
         IsNewGame = false;
     }
@@ -101,7 +108,7 @@ public class PlayerStats : MonoBehaviour
         _eventText.text = EventText;
         eventPrefab.SetActive(true);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(EventTime);
         eventPrefab.SetActive(false);
     }
 
@@ -114,25 +121,46 @@ public class PlayerStats : MonoBehaviour
 
     private void UpdateStatsText()
     {
-        GetNewStats();
+        SetNewStats();
 
-        _scienceStat.text = _science.ToString();
-        _meetingStat.text = _meet.ToString();
-        _respectStat.text = _respect.ToString();
-        _moneyStat.text = _money.ToString();
-        _liquidStat.text = _liquid.ToString();
-        _timeStat.text = _time.ToString();
+        UpdateStats(_scienceStat, _science);
+        UpdateStats(_meetingStat, _meet);
+        UpdateStats(_respectStat, _respect);
+        UpdateStats(_moneyStat, _money);
+        UpdateStats(_liquidStat, _liquid);
+        UpdateStats(_timeStat, _time);
 
         NeedsUpdate = false;
     }
 
-    private void GetNewStats()
+    private void SetNewStats()
     {
-        _science = PlayerPrefs.GetInt("science", 0);
-        _meet = PlayerPrefs.GetInt("meet", 0);
-        _respect = PlayerPrefs.GetInt("respect", 0);
-        _money = PlayerPrefs.GetInt("money", 0);
-        _liquid = PlayerPrefs.GetInt("liquid", 0);
-        _time = PlayerPrefs.GetInt("time", 365);
+        _science = PlayerPrefs.GetInt("science");
+        _meet = PlayerPrefs.GetInt("meet");
+        _respect = PlayerPrefs.GetInt("respect");
+        _money = PlayerPrefs.GetInt("money");
+        _liquid = PlayerPrefs.GetInt("liquid");
+        _time = PlayerPrefs.GetInt("time");
+    }
+
+    private void UpdateStats(TMP_Text stat, int value)
+    {
+        var good = int.TryParse(stat.text, out var statValue);
+        if (!good || statValue == value)
+        {
+            stat.text = value.ToString();
+            return;
+        }
+
+        StartCoroutine(ChangeColor(int.Parse(stat.text) < value, stat));
+        stat.text = value.ToString();
+    }
+
+    private IEnumerator ChangeColor(bool isUpgrade, Graphic stat)
+    {
+        stat.color = isUpgrade ? _upgradeColor : _downgradeColor;
+
+        yield return new WaitForSeconds(EventTime);
+        stat.color = _defaultColor;
     }
 }
