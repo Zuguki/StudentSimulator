@@ -1,10 +1,13 @@
-using DefaultNamespace;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SceneUploader : MonoBehaviour
 {
+    public static bool NeedsOffButtons;
+    public static bool NeedsOnButtons;
+
     private Button _back;
     private Button _stats;
     private Button _sciences;
@@ -44,13 +47,7 @@ public class SceneUploader : MonoBehaviour
         if (IsCurrentScene("Start"))
             return;
 
-        _back.onClick.AddListener(LoadMainScene);
-        _stats.onClick.AddListener(LoadStatsScene);
-        _sciences.onClick.AddListener(LoadSciencesScene);
-        _respect.onClick.AddListener(LoadRespectScene);
-        _meet.onClick.AddListener(LoadMeetScene);
-        _money.onClick.AddListener(LoadMoneyScene);
-        _shop.onClick.AddListener(LoadShopScene);
+        OnButtons();
     }
 
     private static void LoadStatsScene() => SceneManager.LoadScene("Stats");
@@ -69,4 +66,37 @@ public class SceneUploader : MonoBehaviour
 
     private static bool IsCurrentScene(string sceneName) =>
         SceneManager.GetActiveScene() == SceneManager.GetSceneByName(sceneName);
+
+    private void Update()
+    {
+        if (NeedsOffButtons)
+            OffButtons();
+        if (NeedsOnButtons)
+            OnButtons();
+
+        NeedsOffButtons = false;
+        NeedsOnButtons = false;
+    }
+
+    private void OnButtons()
+    {
+        _back.onClick.AddListener(LoadMainScene);
+        _stats.onClick.AddListener(LoadStatsScene);
+        _sciences.onClick.AddListener(LoadSciencesScene);
+        _respect.onClick.AddListener(LoadRespectScene);
+        _meet.onClick.AddListener(LoadMeetScene);
+        _money.onClick.AddListener(LoadMoneyScene);
+        _shop.onClick.AddListener(LoadShopScene);
+    }
+
+    private void OffButtons()
+    {
+        _back.onClick.RemoveAllListeners();
+        _stats.onClick.RemoveAllListeners();
+        _sciences.onClick.RemoveAllListeners();
+        _respect.onClick.RemoveAllListeners();
+        _meet.onClick.RemoveAllListeners();
+        _money.onClick.RemoveAllListeners();
+        _shop.onClick.RemoveAllListeners();
+    }
 }

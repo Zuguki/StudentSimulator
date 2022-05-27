@@ -88,7 +88,7 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetInt("respect", 0);
         PlayerPrefs.SetInt("money", 0);
         PlayerPrefs.SetInt("liquid", 0);
-        PlayerPrefs.SetInt("time", 365);
+        PlayerPrefs.SetInt("time", 5);
 
         Items = new List<Type>();
         if (File.Exists("items.txt"))
