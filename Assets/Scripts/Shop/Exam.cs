@@ -21,6 +21,7 @@ namespace DefaultNamespace.Shop
             if (_money >= ExamPrice && !PlayerStats.Items.Contains(typeof(Exam)))
             {
                 PlayerStats.Items.Add(typeof(Exam));
+                _money -= ExamPrice;
                 PlayerStats.EventText = "Вы купили сдачу экзаменов, теперь вам ничего не угрожает";
             }
             else
