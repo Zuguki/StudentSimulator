@@ -64,6 +64,8 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetInt("money", 100000);
         PlayerPrefs.SetInt("liquid", 100000);
         PlayerPrefs.SetInt("time", 100000);
+
+        HackSystem = false;
     }
 
     private static void SetDefaultValues()
