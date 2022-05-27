@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour
 
     private readonly Color _defaultColor = Color.black;
     private readonly Color _upgradeColor = Color.blue;
-    private readonly Color _downgradeColor = Color.red; 
+    private readonly Color _downgradeColor = Color.red;
 
     private void Awake()
     {
