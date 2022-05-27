@@ -22,7 +22,6 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnvironmentSerializer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Meet/EventFromUniversity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Meet/MentorGroupChats.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerStats.cs" root0="FORCE_HIGHLIGHTING" />
@@ -103,7 +102,7 @@
       <workItem from="1651492869638" duration="2084000" />
       <workItem from="1652967440723" duration="9112000" />
       <workItem from="1653051899752" duration="8526000" />
-      <workItem from="1653661208938" duration="13757000" />
+      <workItem from="1653661208938" duration="14626000" />
     </task>
     <servers />
   </component>

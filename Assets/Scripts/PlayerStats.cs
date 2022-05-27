@@ -1,18 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-    public static readonly List<Type> Items = new();
+    public static List<Type> Items = new();
 
     public static bool NeedsUpdate;
     public static string EventText;
     public static bool IsNewGame;
     public static bool HackSystem;
+    public static string Json;
 
     private const float EventTime = 2f;
 
@@ -35,9 +37,12 @@ public class PlayerStats : MonoBehaviour
     private int _liquid;
     private int _time;
 
+    private int _previousItemsCount;
+
     private readonly Color _defaultColor = Color.black;
     private readonly Color _upgradeColor = Color.blue;
     private readonly Color _downgradeColor = Color.red;
+
 
     private void Awake()
     {
@@ -130,7 +135,20 @@ public class PlayerStats : MonoBehaviour
         UpdateStats(_liquidStat, _liquid);
         UpdateStats(_timeStat, _time);
 
+        if (_previousItemsCount != Items.Count)
+            UpdateJson();
+
+        if (Json is not null)
+            Items = JsonUtility.FromJson<List<Type>>(Json);
+        
+        Json = null;
         NeedsUpdate = false;
+    }
+
+    private void UpdateJson()
+    {
+        _previousItemsCount = Items.Count;
+        Json = JsonUtility.ToJson(Items);
     }
 
     private void SetNewStats()
