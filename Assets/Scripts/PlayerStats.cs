@@ -10,11 +10,11 @@ public class PlayerStats : MonoBehaviour
 
     public static bool NeedsUpdate;
     public static string EventText;
+    public static bool IsNewGame;
+    public static bool HackSystem;
 
     [SerializeField] private GameObject statObject;
     [SerializeField] private GameObject eventPrefab;
-    [SerializeField] private bool isNewGame;
-    [SerializeField] private bool hackSystem;
 
     private TextMeshProUGUI _scienceStat;
     private TextMeshProUGUI _meetingStat;
@@ -48,9 +48,9 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        if (isNewGame)
+        if (IsNewGame)
             SetDefaultValues();
-        if (hackSystem)
+        if (HackSystem)
             SetHackValues();
 
         UpdateStatsText();
@@ -74,6 +74,8 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetInt("money", 0);
         PlayerPrefs.SetInt("liquid", 0);
         PlayerPrefs.SetInt("time", 365);
+
+        IsNewGame = false;
     }
 
     private void Update()
