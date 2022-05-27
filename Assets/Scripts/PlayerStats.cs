@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +38,7 @@ public class PlayerStats : MonoBehaviour
     private int _time;
 
     private int _previousItemsCount;
-    private bool _needsSerialize;
+    private bool _needsSerialize = true;
 
     private readonly Color _defaultColor = Color.black;
     private readonly Color _upgradeColor = Color.blue;
@@ -92,8 +91,8 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetInt("time", 365);
 
         Items = new List<Type>();
-        if (File.Exists("items.binary"))
-            File.Delete("items.binary");
+        if (File.Exists("items.txt"))
+            File.Delete("items.txt");
         
         IsNewGame = false;
     }
@@ -153,14 +152,17 @@ public class PlayerStats : MonoBehaviour
 
     private void UpdateItems()
     {
-        using var fs = new FileStream("items.binary", FileMode.OpenOrCreate);
+        if (!File.Exists("items.txt"))
+            return;
+        
+        using var fs = new FileStream("items.txt", FileMode.Open);
         var bf = new BinaryFormatter();
         Items = (List<Type>) bf.Deserialize(fs);
     }
 
     private void UpdateData()
     {
-        using var fs = new FileStream("items.binary", FileMode.OpenOrCreate);
+        using var fs = new FileStream("items.txt", FileMode.OpenOrCreate);
         _previousItemsCount = Items.Count;
         var bf = new BinaryFormatter();
         bf.Serialize(fs, Items);
