@@ -17,7 +17,7 @@ public class SceneUploader : MonoBehaviour
     {
         if (IsCurrentScene("Start"))
             return;
-        
+
         _back = gameObject.transform.GetChild(0).GetComponent<Button>();
         _stats = gameObject.transform.GetChild(1).GetComponent<Button>();
         _sciences = gameObject.transform.GetChild(2).GetComponent<Button>();
@@ -31,7 +31,7 @@ public class SceneUploader : MonoBehaviour
     {
         if (IsCurrentScene("Start"))
             return;
-        
+
         _back.onClick.AddListener(LoadMainScene);
         _stats.onClick.AddListener(LoadStatsScene);
         _sciences.onClick.AddListener(LoadSciencesScene);
@@ -42,7 +42,7 @@ public class SceneUploader : MonoBehaviour
     }
 
     private static void LoadStatsScene() => SceneManager.LoadScene("Stats");
-    
+
     private static void LoadMainScene() => SceneManager.LoadScene("Start");
 
     private static void LoadMoneyScene() => SceneManager.LoadScene("Money");
@@ -55,12 +55,18 @@ public class SceneUploader : MonoBehaviour
 
     private static void LoadShopScene() => SceneManager.LoadScene("Shop");
 
-    private static bool IsCurrentScene(string sceneName) => 
-        SceneManager.GetActiveScene() == SceneManager.GetSceneByName(sceneName);
-
     private static void LoadNewGame()
     {
         PlayerStats.IsNewGame = true;
-        SceneManager.LoadScene("Stats");
+        LoadStatsScene();
     }
+
+    private static void LoadHackGame()
+    {
+        PlayerStats.HackSystem = true;
+        LoadStatsScene();
+    }
+
+    private static bool IsCurrentScene(string sceneName) =>
+        SceneManager.GetActiveScene() == SceneManager.GetSceneByName(sceneName);
 }
