@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -102,10 +103,35 @@ public class PlayerStats : MonoBehaviour
         if (!NeedsUpdate)
             return;
 
+        AddSuffering();
         ShowEvent();
         ChangeTime();
         UpdateStatsText();
         StatsManager.SetLiquidPrice();
+    }
+
+    private void AddSuffering()
+    {
+        if (_science - _respect > 250 && Random.Range(0, _science - _respect) > 250)
+        {
+            EventText = "Зубрила, тебя не увожают и не дают учиться";
+            PlayerPrefs.SetInt("science", _science - Random.Range(50, 150));
+        }
+        else if (_science - _meet > 500 && Random.Range(0, _science - _meet) > 500)
+        {
+            EventText = "Зубрила, у тебя мало друзей и тебе трудно учиться";
+            PlayerPrefs.SetInt("science", _science - Random.Range(100, 200));
+        }
+        else if (_respect - _science > 250 && Random.Range(0, _respect - _science) > 250)
+        {
+            EventText = "Ты конечно крутой, но учителям ты не нравишься, уважение просело";
+            PlayerPrefs.SetInt("respect", _respect - Random.Range(50, 150));
+        }
+        else if (_meet - _science > 500 && Random.Range(0, _meet - _science) > 500)
+        {
+            EventText = "У тебя много друзей, но учителю все равно, пришлось весь день учиться";
+            PlayerPrefs.SetInt("meet", _meet - Random.Range(100, 200));
+        }
     }
 
     private void ShowEvent()
