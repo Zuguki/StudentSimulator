@@ -16,7 +16,7 @@ namespace DefaultNamespace.Respect
         
         private readonly List<string> _goodEvents = new()
         {
-            "Жижа подрил уважение", "О да, жижка, лучший друг радиста",
+            "Жижа подарила уважение", "О да, жижка, лучший друг радиста",
             "Жаль, у нас теперь мешьше жижла"
         };
 
