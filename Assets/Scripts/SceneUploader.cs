@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class SceneUploader : MonoBehaviour
 {
-    public static bool NeedsOffButtons;
     public static bool NeedsOnButtons;
+    public static bool NeedsOffButtons;
+
+    [SerializeField] private GameObject infoUI;
 
     private Button _back;
     private Button _stats;
@@ -27,6 +29,10 @@ public class SceneUploader : MonoBehaviour
         PlayerStats.IsNewGame = true;
         LoadStatsScene();
     }
+
+    public void ShowInfo() => infoUI.SetActive(true);
+
+    public void HideInfo() => infoUI.SetActive(false);
 
     private void Awake()
     {
