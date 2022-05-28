@@ -117,11 +117,13 @@ public class StatsManager : MonoBehaviour
     private void BuyLiquid()
     {
         SetStats();
-        if (_slider.value > _money)
+        if (_slider.value > _money || _slider.value == 0)
             return;
 
         _liquid += (int) _slider.value;
         _money -= (int) _liquidPrice * (int) _slider.value;
+
+        PlayerStats.EventText = $"Вы купили {_slider.value} жижи за {(int) _liquidPrice * (int) _slider.value}";
 
         PlayerPrefs.SetInt("money", _money);
         PlayerPrefs.SetInt("liquid", _liquid);
@@ -131,11 +133,13 @@ public class StatsManager : MonoBehaviour
     private void SellLiquid()
     {
         SetStats();
-        if (_slider.value > _liquid)
+        if (_slider.value > _liquid || _slider.value == 0)
             return;
 
         _liquid -= (int) _slider.value;
         _money += (int) _liquidPrice * (int) _slider.value;
+        
+        PlayerStats.EventText = $"Вы продали {_slider.value} жижи за {(int) _liquidPrice * (int) _slider.value}";
 
         PlayerPrefs.SetInt("money", _money);
         PlayerPrefs.SetInt("liquid", _liquid);
