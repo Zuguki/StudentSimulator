@@ -102,7 +102,7 @@ public class StatsManager : MonoBehaviour
             return;
 
         _liquid += (int) _slider.value;
-        _money -= _liquidPrice;
+        _money -= _liquidPrice * (int) _slider.value;
 
         Debug.Log($"SliderValue: {_slider.value}");
 
