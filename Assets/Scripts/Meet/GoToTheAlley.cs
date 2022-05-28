@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -14,6 +15,15 @@ namespace DefaultNamespace
         private int _meet;
         private int _money;
         
+        private readonly List<string> _goodEvents = new()
+        {
+            "Опять бухаем? Где ты так заработал?", "Аккуратней, могут поймать",
+            "Я вот думаю, что у тебя зависимость скоро будет"
+        };
+
+        private readonly List<string> _badEvents = new()
+            {"Не вышло в этот раз", "Ха, тебе не продали алко", "А алко то уже не продают"};
+        
         public void Buffs()
         {
             _meet = PlayerPrefs.GetInt("meet");
@@ -21,21 +31,21 @@ namespace DefaultNamespace
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Ты потусил на аллейке и вас не поймали, теперь у тебя больше знакомых";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _meet += buffValue;
                 _money -= DrinkPrice;
             }
             else
-                PlayerStats.EventText = $"У тебя нет денег на выпивку, нужно: {DrinkPrice}";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
         
         private bool TryGetGoodBuff(out int buffValue)
         {
-            var isGoodBuff = _money > DrinkPrice && Random.Range(0, 100) > 10;
+            var isGoodBuff = _money >= DrinkPrice && Random.Range(0, 100) > 10;
             
-            buffValue = isGoodBuff ? Random.Range(100, 150) : 0;
+            buffValue = isGoodBuff ? Random.Range(50, 75) : 0;
             return isGoodBuff;
         }
         

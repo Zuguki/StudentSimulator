@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -9,10 +10,19 @@ namespace DefaultNamespace
         public string Text => "Приготовить еду в общаге";
         public string NeedPay => $"{MealPrice}р";
 
-        private const int MealPrice = 500;
+        private const int MealPrice = 750;
 
         private int _meet;
         private int _money;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "Вот это ты готовишь, так вкусно получилось", "Удивительно, всем понравилось",
+            "Где ты так научился готовить?"
+        };
+
+        private readonly List<string> _badEvents = new()
+            {"Продукты подорожали", "Магазинчики то закрыты уже", "Обойдутся без твоей еды"};
         
         public void Buffs()
         {
@@ -21,24 +31,21 @@ namespace DefaultNamespace
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Ты приготовил вкусное блюдо, теперь у тебя больше знакомых";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _meet += buffValue;
                 _money -= MealPrice;
             }
             else
-            {
-                PlayerStats.EventText = $"У тебя нет денег на покупку продуктов, необходимо: {MealPrice}," +
-                                        $" или в общаге итак все сыты";
-            }
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
         
          private bool TryGetGoodBuff(out int buffValue)
          {
-             var isGoodBuff = _money > MealPrice && Random.Range(0, 100) > 10;
+             var isGoodBuff = _money >= MealPrice;
              
-             buffValue = isGoodBuff ? Random.Range(100, 150) : 0;
+             buffValue = isGoodBuff ? Random.Range(75, 100) : 0;
              return isGoodBuff;
          }
          
