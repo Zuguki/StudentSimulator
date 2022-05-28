@@ -32,7 +32,7 @@ namespace DefaultNamespace.Respect
             {
                 PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _respect += buffValue;
-                _meet -= MeetPrice;
+                _meet -= MeetPrice / Random.Range(10, 100);
             }
             else
                 PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
