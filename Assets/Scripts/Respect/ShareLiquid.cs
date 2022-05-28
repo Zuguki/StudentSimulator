@@ -32,7 +32,7 @@ namespace DefaultNamespace.Respect
         
         private bool TryGetGoodBuff(out int buffValue)
         {
-            var isGoodBuff = _liquid > LiquidPrice;
+            var isGoodBuff = _liquid >= LiquidPrice;
             
             buffValue = isGoodBuff ? Random.Range(25, 75) : 0;
             return isGoodBuff;

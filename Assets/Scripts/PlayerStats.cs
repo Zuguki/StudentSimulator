@@ -105,6 +105,7 @@ public class PlayerStats : MonoBehaviour
         ShowEvent();
         ChangeTime();
         UpdateStatsText();
+        StatsManager.SetLiquidPrice();
     }
 
     private void ShowEvent()

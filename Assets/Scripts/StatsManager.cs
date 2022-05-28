@@ -16,7 +16,7 @@ public class StatsManager : MonoBehaviour
     private Button _sellButton;
 
     private int _science, _meet, _respect, _money, _liquid, _time;
-
+    
     private static float _liquidPrice = 5f;
 
     private void UpdateValues()
@@ -30,16 +30,12 @@ public class StatsManager : MonoBehaviour
         _liquidText.text = _liquid.ToString();
         _timeText.text = _time.ToString();
         _shopItemsText.text = ParseShopItemsText();
-
-        SetLiquidPrice();
     }
 
-    private static void SetLiquidPrice()
+    public static void SetLiquidPrice()
     {
         var ratio = Random.Range(-2.5f, 2.5f);
-        Debug.Log($"ratio: {ratio}");
         _liquidPrice += ratio;
-        Debug.Log($"liquidPrice: {_liquidPrice}");
 
         _liquidPrice = _liquidPrice switch
         {
