@@ -12,9 +12,12 @@ namespace DefaultNamespace.Shop
         public string NeedPay => $"{CoursePrice}р";
 
         private const int CoursePrice = 1_000;
-        
+
         private readonly List<string> _goodEvents = new()
-            {"Инфо циганский курс у вас", "ЕЕЕ вы купили курс: SON:SUCK:JS:FUCK:ABS:PASCAL:GG10001", "Приятного просмотра"};
+        {
+            "Инфо циганский курс у вас", "ЕЕЕ вы купили курс: SON:SUCK:JS:FUCK:ABS:PASCAL:GG10001",
+            "Приятного просмотра"
+        };
 
         private readonly List<string> _badEvents = new()
             {"Это тебе не Гоша Дударь, иди еще заработай", "Не, иди дальше ХаудиХо смотри", "Не будем продаваит тебе"};

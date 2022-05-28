@@ -1,4 +1,5 @@
-﻿using DefaultNamespace.Shop;
+﻿using System.Collections.Generic;
+using DefaultNamespace.Shop;
 using UnityEngine;
 
 namespace DefaultNamespace.Science
@@ -8,9 +9,21 @@ namespace DefaultNamespace.Science
         public StatType StateType => StatType.Science;
 
         public string Text => "Готовиться по учебникам";
-        public string NeedPay => "";
+        public string NeedPay => "Учебник";
 
         private int _science;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "Красивые картинки в учебнике", "А учебник то реально классный",
+            "Ты опять весь вечер залипал в картинки учебника"
+        };
+
+        private readonly List<string> _badEvents = new()
+        {
+            "Следует сходить в магазинчик(не за жижей)", "Ты не смог найти учебник в портфеле",
+            "Может следует купить сначала?"
+        };
         
         public void Buffs()
         {
@@ -18,11 +31,11 @@ namespace DefaultNamespace.Science
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Хорош, позанимался";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _science += buffValue;
             }
             else
-                PlayerStats.EventText = "Тебе следует купить учебник!";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
@@ -31,7 +44,7 @@ namespace DefaultNamespace.Science
         {
             var isGoodBuff = PlayerStats.Items.Contains(typeof(Book));
             
-            buffValue = isGoodBuff ? Random.Range(25, 50) : 0;
+            buffValue = isGoodBuff ? Random.Range(15, 35) : 0;
             return isGoodBuff;
         }
         

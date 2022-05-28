@@ -1,4 +1,5 @@
-﻿using DefaultNamespace.Shop;
+﻿using System.Collections.Generic;
+using DefaultNamespace.Shop;
 using UnityEngine;
 
 namespace DefaultNamespace.Science
@@ -8,9 +9,21 @@ namespace DefaultNamespace.Science
         public StatType StateType => StatType.Science;
 
         public string Text => "Заниматься по видео курсу";
-        public string NeedPay => "";
+        public string NeedPay => "Видео курс";
 
         private int _science;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "А курс то классный", "Всю ночь смотрел видосики(по учебе)",
+            "Ты уже понял умножение"
+        };
+
+        private readonly List<string> _badEvents = new()
+        {
+            "Купи курс! Получи бонус", "Эх, посмотреть не вышло",
+            "Ты не можешь найти курс"
+        };
         
         public void Buffs()
         {
@@ -18,11 +31,11 @@ namespace DefaultNamespace.Science
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Хорош, курс прикольный";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _science += buffValue;
             }
             else
-                PlayerStats.EventText = "Тебе следует купить курс";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
@@ -31,7 +44,7 @@ namespace DefaultNamespace.Science
         {
             var isGoodBuff = PlayerStats.Items.Contains(typeof(VideoCourse));
             
-            buffValue = isGoodBuff ? Random.Range(50, 25) : 0;
+            buffValue = isGoodBuff ? Random.Range(35, 60) : 0;
             return isGoodBuff;
         }
         

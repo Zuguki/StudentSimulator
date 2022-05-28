@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace DefaultNamespace.Science
@@ -10,8 +11,19 @@ namespace DefaultNamespace.Science
         public string Text => "Готовиться самому";
         public string NeedPay => $"{Price} знаний";
 
-        private const int Price = 250;
+        private const int Price = 100;
         private int _science;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "Ну и готовься сам, не интересно:(", "1 + 1 сможешь решить",
+            "Ты какой то слишком умный"
+        };
+
+        private readonly List<string> _badEvents = new()
+        {
+            "Какой сам? Ты, сложение не знаешь", "Маловато знаний то", "Не позорься!"
+        };
         
         public void Buffs()
         {
@@ -19,20 +31,20 @@ namespace DefaultNamespace.Science
 
             if (TryGetGoodBuff(out var buff))
             {
-                PlayerStats.EventText = "Вы успешно готовитесь самостоятельно";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _science += buff;
             }
             else
-                PlayerStats.EventText = "У вас недостаточно знаний";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
         
         private bool TryGetGoodBuff(out int buffValue)
         {
-            var isGoodBuff = _science >= 250;
+            var isGoodBuff = _science >= Price;
             
-            buffValue = isGoodBuff ? Random.Range(25, 75) : 0;
+            buffValue = isGoodBuff ? Random.Range(0, 25) : 0;
             return isGoodBuff;
         }
         

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Science
 {
@@ -9,9 +10,21 @@ namespace DefaultNamespace.Science
         public string Text => "Попросить конспекты у одногруппников";
         public string NeedPay => $"{Price} уважения";
 
-        private const int Price = 1000;
+        private const int Price = 250;
         private int _respect;
         private int _science;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "Он тебе дал...", "Одногрупник тебя уважает, теперь можно позанимться",
+            "Я не знаю как, но ты понравился одногрупнице и она тебе ДАЛА (конспект)"
+        };
+
+        private readonly List<string> _badEvents = new()
+        {
+            "Тебя чуть не избили", "Сказали: 'Иди ка ты наФиг'",
+            "Окуратней, тебя не уважают"
+        };
         
         public void Buffs()
         {
@@ -20,11 +33,11 @@ namespace DefaultNamespace.Science
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Одногруппницы тебе ДАЛИ (конспект)";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _science += buffValue;
             }
             else
-                PlayerStats.EventText = "Не дали в этот раз, уважения мало...";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
 
             UpdatePrefabValue();
         }
@@ -33,7 +46,7 @@ namespace DefaultNamespace.Science
         {
             var isGoodBuff = _respect >= Price;
             
-            buffValue = isGoodBuff ? Random.Range(50, 100) : 0;
+            buffValue = isGoodBuff ? Random.Range(20, 50) : 0;
             return isGoodBuff;
         }
         
