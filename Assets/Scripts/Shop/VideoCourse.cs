@@ -20,7 +20,7 @@ namespace DefaultNamespace.Shop
         };
 
         private readonly List<string> _badEvents = new()
-            {"Это тебе не Гоша Дударь, иди еще заработай", "Не, иди дальше ХаудиХо смотри", "Не будем продаваит тебе"};
+            {"Это тебе не Гоша Дударь, иди еще заработай", "Не, иди дальше ХаудиХо смотри", "Не будем продавать тебе"};
 
 
         private int _money;
@@ -32,6 +32,7 @@ namespace DefaultNamespace.Shop
             if (_money >= CoursePrice && !PlayerStats.Items.Contains(typeof(VideoCourse)))
             {
                 PlayerStats.Items.Add(typeof(VideoCourse));
+                _money -= CoursePrice;
                 PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
             }
             else
