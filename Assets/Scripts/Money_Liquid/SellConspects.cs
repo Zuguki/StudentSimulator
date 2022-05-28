@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Money
 {
@@ -8,10 +9,18 @@ namespace DefaultNamespace.Money
         public string Text => "Продать конспекты";
         public string NeedPay => $"{NeedsScience} знаний";
 
-        private const int NeedsScience = 3000;
+        private const int NeedsScience = 1_000;
 
         private int _science;
         private int _money;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "Не зря учился...", "Конспект продали, бабки получили, все З&С", "Ну, нужно же жижу покупать как то"
+        };
+
+        private readonly List<string> _badEvents = new()
+            {"Твои конспекты никому не нужны", "Всем страшно брать твои конспекты", "Ты хочешь им жизнь усложнить?"};
 
         public void Buffs()
         {
@@ -20,20 +29,20 @@ namespace DefaultNamespace.Money
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Так, конаспект продали, бабки получили, все З&С";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _money += buffValue;
             }
             else
-                PlayerStats.EventText = $"Ну, либо знаний маловато, нужно: {NeedsScience}, или не повезло";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
         
         private bool TryGetGoodBuff(out int buffValue)
         {
-            var isGoodBuff = _science > NeedsScience && Random.Range(0, 100) > 10;
+            var isGoodBuff = _science >= NeedsScience && Random.Range(0, 100) > 10;
             
-            buffValue = Random.Range(200, 600);
+            buffValue = Random.Range(100, 700);
             return isGoodBuff;
         }
         

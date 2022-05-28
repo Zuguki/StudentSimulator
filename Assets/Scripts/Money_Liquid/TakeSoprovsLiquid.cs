@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Money
 {
@@ -8,11 +9,17 @@ namespace DefaultNamespace.Money
         public string Text => "Забрать жижу у сопров";
         public string NeedPay => $"{NeedRespect} уважения";
 
-        private const int NeedRespect = 5000;
+        private const int NeedRespect = 750;
 
         private int _respect;
         private int _science;
         private int _liquid;
+        
+        private readonly List<string> _goodEvents = new()
+            {"Риск оправдался", "Фух, еле забрал", "Ну, ради жижки можно"};
+
+        private readonly List<string> _badEvents = new()
+            {"Тебя переиграли, вся жижа у них", "Как ты так просрал жижу...", "Куда ты полез?"};
 
         public void Buffs()
         {
@@ -22,13 +29,12 @@ namespace DefaultNamespace.Money
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Вау, красавец, не думал, что у тебя получится";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _liquid += buffValue;
             }
             else
             {
-                PlayerStats.EventText = "Ну, в другой, раз, ты весь день извинялся, теперь у тебя нет жижи," +
-                                        " меньше уважения и уровень подготовки";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
                 _respect -= _respect - buffValue > 0 ? buffValue : _respect;
                 _science -= _science - buffValue > 0 ? buffValue : _science;
                 _liquid = 0;
@@ -40,9 +46,9 @@ namespace DefaultNamespace.Money
         
         private bool TryGetGoodBuff(out int buffValue)
         {
-            var isGoodBuff = _respect > NeedRespect && Random.Range(0, 100) > 25;
+            var isGoodBuff = _respect >= NeedRespect && Random.Range(0, 100) > 25;
             
-            buffValue = isGoodBuff ? Random.Range(0, 100) : Random.Range(100, 200);
+            buffValue = isGoodBuff ? Random.Range(20, 50) : Random.Range(25, 75);
             return isGoodBuff;
         }
         
