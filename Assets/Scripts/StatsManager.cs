@@ -17,7 +17,7 @@ public class StatsManager : MonoBehaviour
 
     private int _science, _meet, _respect, _money, _liquid, _time;
 
-    private int _liquidPrice;
+    private float _liquidPrice = 5f;
 
     private void UpdateValues()
     {
@@ -31,7 +31,22 @@ public class StatsManager : MonoBehaviour
         _timeText.text = _time.ToString();
         _shopItemsText.text = ParseShopItemsText();
 
-        _liquidPrice = Random.Range(1, 25);
+        SetLiquidPrice();
+    }
+
+    private void SetLiquidPrice()
+    {
+        var ratio = Random.Range(-2.5f, 2.5f);
+        _liquidPrice += ratio;
+
+        _liquidPrice = _liquidPrice switch
+        {
+            < 1f => 1f,
+            > 25f => 25f,
+            _ => _liquidPrice
+        };
+
+        _liquidPrice = (float) Math.Round(_liquidPrice, 2);
     }
 
     private static string ParseShopItemsText()
@@ -83,7 +98,11 @@ public class StatsManager : MonoBehaviour
         UpdateValues();
     }
 
-    private void Update() => _textLiquid.text = $"{_slider.value}мл/{_liquidPrice}р";
+    private void Update()
+    {
+        _slider.maxValue = GetSliderMaxValue();
+        _textLiquid.text = $"{_slider.value}мл/{_liquidPrice}р";
+    }
 
     private void SetStats()
     {
@@ -102,9 +121,7 @@ public class StatsManager : MonoBehaviour
             return;
 
         _liquid += (int) _slider.value;
-        _money -= _liquidPrice * (int) _slider.value;
-
-        Debug.Log($"SliderValue: {_slider.value}");
+        _money -= (int) _liquidPrice * (int) _slider.value;
 
         PlayerPrefs.SetInt("money", _money);
         PlayerPrefs.SetInt("liquid", _liquid);
@@ -118,10 +135,12 @@ public class StatsManager : MonoBehaviour
             return;
 
         _liquid -= (int) _slider.value;
-        _money += _liquidPrice * (int) _slider.value;
+        _money += (int) _liquidPrice * (int) _slider.value;
 
         PlayerPrefs.SetInt("money", _money);
         PlayerPrefs.SetInt("liquid", _liquid);
         PlayerStats.NeedsUpdate = true;
     }
+
+    private int GetSliderMaxValue() => Math.Max(_liquid, _money / (int) _liquidPrice);
 }
