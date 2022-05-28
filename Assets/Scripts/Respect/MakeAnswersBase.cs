@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Respect
 {
@@ -12,6 +13,15 @@ namespace DefaultNamespace.Respect
 
         private int _respect;
         private int _meet;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "Ну, копи паст с других баз, это не оч круто...", "База ответов... А ты хорош",
+            "База прикольная получается, но учеба просела"
+        };
+
+        private readonly List<string> _badEvents = new()
+            {"Зачем кому то NoName база?", "Иди знакомься", "База? Не, не слышал"};
 
         public void Buffs()
         {
@@ -20,15 +30,12 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "О, ты успешно делаешь базу ответов, но тратишь на это много времени," +
-                                        " количество знакомств уменьшилось";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _respect += buffValue;
                 _meet -= MeetPrice;
             }
             else
-            {
-                PlayerStats.EventText = "Иди знакомься для начала, у тебя мало знакомых";
-            }
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
@@ -37,7 +44,7 @@ namespace DefaultNamespace.Respect
          {
              var isGoodBuff = _meet >= MeetPrice;
  
-             buffValue = Random.Range(100, 250);
+             buffValue = Random.Range(35, 70);
              return isGoodBuff;
          }
 

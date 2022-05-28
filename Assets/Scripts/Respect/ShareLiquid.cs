@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Respect
 {
@@ -13,6 +14,15 @@ namespace DefaultNamespace.Respect
         private int _liquid;
         private int _respect;
         
+        private readonly List<string> _goodEvents = new()
+        {
+            "Жижа подрил уважение", "О да, жижка, лучший друг радиста",
+            "Жаль, у нас теперь мешьше жижла"
+        };
+
+        private readonly List<string> _badEvents = new()
+            {"Пора заработать жижла", "Жижи много не бывает! Тем более у тебя", "Не хватает на заливку"};
+        
         public void Buffs()
         {
             _liquid = PlayerPrefs.GetInt("liquid");
@@ -20,12 +30,12 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Молодец, ты спас соседа";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _liquid -= LiquidPrice;
                 _respect += buffValue;
             }
             else
-                PlayerStats.EventText = $"У тебя недостаточно жижи! {LiquidPrice}";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
@@ -34,7 +44,7 @@ namespace DefaultNamespace.Respect
         {
             var isGoodBuff = _liquid >= LiquidPrice;
             
-            buffValue = isGoodBuff ? Random.Range(25, 75) : 0;
+            buffValue = isGoodBuff ? Random.Range(10, 25) : 0;
             return isGoodBuff;
         }
         

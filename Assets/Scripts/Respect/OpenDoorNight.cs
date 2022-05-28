@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Respect
 {
@@ -6,10 +7,19 @@ namespace DefaultNamespace.Respect
     {
         public StatType StateType => StatType.Respect;
         public string Text => "Открыть дверь в общагу ночью";
-        public string NeedPay => "";
+        public string NeedPay => "Синячок";
 
         private int _respect;
         private int _science;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "Дверца открыта, ты красавчик", "Фух, повезло - повезло",
+            "Как тебя не спалили? Там Дед в порядке?"
+        };
+
+        private readonly List<string> _badEvents = new()
+            {"А вот зачем ты шел открывать дверь с колонкой?", "Ну, опять получил п-ды", "Ооо, да, Дед в порядке"};
         
         public void Buffs()
         {
@@ -18,23 +28,23 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Вау, тебя не спалили, молодец";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _respect += buffValue;
             }
             else
             {
-                PlayerStats.EventText = "Фааак, тебя спалили, подготовка к экзаменам ухудшилась, ведь ты весь день извинялся";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
                 _science -= _science - buffValue > 0 ? buffValue : _science;
             }
             
             UpdatePrefabValue();
         }
 
-        private bool TryGetGoodBuff(out int buffValue)
+        private static bool TryGetGoodBuff(out int buffValue)
         {
-            var isGoodBuff = Random.Range(0, 100) > 65; 
+            var isGoodBuff = Random.Range(0, 100) > 50; 
             
-            buffValue = isGoodBuff ? Random.Range(50, 75) : Random.Range(50, 100);
+            buffValue = Random.Range(10, 50);
             return isGoodBuff;
         }
         

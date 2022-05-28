@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Respect
 {
@@ -8,10 +9,19 @@ namespace DefaultNamespace.Respect
         public string Text => "Позвать одногрупников в KillFish";
         public string NeedPay => $"{KillFishPrice}р";
 
-        private const int KillFishPrice = 1000;
+        private const int KillFishPrice = 750;
 
         private int _respect;
         private int _money;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "Не думал, что ты такой любитель выпить", "Со здоровьем то все ок будет?",
+            "Как ты столько выпил?"
+        };
+
+        private readonly List<string> _badEvents = new()
+            {"Фух, хоть немного отдохнешь", "Деньжат нема уже?", "Все пропил..."};
 
         public void Buffs()
         {
@@ -20,12 +30,12 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Вы сходили в KillFish и успешно провели время";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _respect += buffValue;
                 _money -= KillFishPrice;
             }
             else
-                PlayerStats.EventText = $"Заработай для начала, за тебя платить не будут необходимо: {KillFishPrice}";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
@@ -34,7 +44,7 @@ namespace DefaultNamespace.Respect
          {
              var isGoodBuff = _money >= KillFishPrice;
  
-             buffValue = isGoodBuff ? Random.Range(200, 300) : 0;
+             buffValue = isGoodBuff ? Random.Range(50, 75) : 0;
              return isGoodBuff;
          }
           

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Respect
 {
@@ -8,10 +9,19 @@ namespace DefaultNamespace.Respect
         public string Text => "Помочь с домашкой";
         public string NeedPay => $"{ScienceNeed} знаний";
 
-        private const int ScienceNeed = 3000;
+        private const int ScienceNeed = 500;
 
         private int _science;
         private int _respect;
+        
+        private readonly List<string> _goodEvents = new()
+        {
+            "Одногруппница тебе очень благодарна :)", "Отлично помог, оказывается не только с домашкой",
+            "Эх, умный парень"
+        };
+
+        private readonly List<string> _badEvents = new()
+            {"Рофл? Ты же ничего не знаешь", "Ха-ха, себе помоги", "Без твоей помощи будет лучше"};
 
         public void Buffs()
         {
@@ -20,20 +30,20 @@ namespace DefaultNamespace.Respect
 
             if (TryGetGoodBuff(out var buffValue))
             {
-                PlayerStats.EventText = "Одногруппница тебе очень благодарна :)";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
                 _respect += buffValue;
             }
             else
-                PlayerStats.EventText = "Ты рофлишь? Ты слишком тупой, чтобы помочь кому то";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
         
         private bool TryGetGoodBuff(out int buffValue)
         {
-            var isGoodBuff = _science > ScienceNeed;
+            var isGoodBuff = _science >= ScienceNeed;
 
-            buffValue = isGoodBuff ? Random.Range(100, 200) : 0;
+            buffValue = isGoodBuff ? Random.Range(30, 60) : 0;
             return isGoodBuff;
         }
          
