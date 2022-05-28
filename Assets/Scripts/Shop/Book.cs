@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Shop
 {
@@ -14,6 +15,12 @@ namespace DefaultNamespace.Shop
 
         private int _money;
 
+        private readonly List<string> _goodEvents = new()
+            {"Учебник теперь у вас", "Круто, вы купили учебник", "Поздравляю с новеньким учебником"};
+
+        private readonly List<string> _badEvents = new()
+            {"Деньжат подкопи", "Может ты крутой и у тебя уже есть учебник?", "Чет тебе не хотят продавать"};
+
         public void Buffs()
         {
             _money = PlayerPrefs.GetInt("money");
@@ -21,10 +28,10 @@ namespace DefaultNamespace.Shop
             if (_money >= BookPrice && !PlayerStats.Items.Contains(typeof(Book)))
             {
                 PlayerStats.Items.Add(typeof(Book));
-                PlayerStats.EventText = "Учебник теперь у вас";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
             }
             else
-                PlayerStats.EventText = "Денег то нет, ну или ты крутой, учебник уже у тебя";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }

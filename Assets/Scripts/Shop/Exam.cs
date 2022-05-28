@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Shop
 {
@@ -12,6 +13,12 @@ namespace DefaultNamespace.Shop
 
         private const int ExamPrice = 50_000;
 
+        private readonly List<string> _goodEvents = new()
+            {"Ну все, можно не переживать по поводу экзаменов", "Богатенький ты студент", "Откуда столько денег?"};
+
+        private readonly List<string> _badEvents = new()
+            {"Бедный студент... Совсем отчаялся", "Чет не хотят тебе экзамен продать", "Лол, какой экзамен, иди учись"};
+        
         private int _money;
 
         public void Buffs()
@@ -22,10 +29,10 @@ namespace DefaultNamespace.Shop
             {
                 PlayerStats.Items.Add(typeof(Exam));
                 _money -= ExamPrice;
-                PlayerStats.EventText = "Вы купили сдачу экзаменов, теперь вам ничего не угрожает";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
             }
             else
-                PlayerStats.EventText = "У вас недостаточно денег";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }

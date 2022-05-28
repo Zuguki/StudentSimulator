@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DefaultNamespace.Shop
 {
@@ -10,7 +11,14 @@ namespace DefaultNamespace.Shop
         public string Text => "Видео курс";
         public string NeedPay => $"{CoursePrice}р";
 
-        private const int CoursePrice = 1000;
+        private const int CoursePrice = 1_000;
+        
+        private readonly List<string> _goodEvents = new()
+            {"Инфо циганский курс у вас", "ЕЕЕ вы купили курс: SON:SUCK:JS:FUCK:ABS:PASCAL:GG10001", "Приятного просмотра"};
+
+        private readonly List<string> _badEvents = new()
+            {"Это тебе не Гоша Дударь, иди еще заработай", "Не, иди дальше ХаудиХо смотри", "Не будем продаваит тебе"};
+
 
         private int _money;
 
@@ -21,10 +29,10 @@ namespace DefaultNamespace.Shop
             if (_money >= CoursePrice && !PlayerStats.Items.Contains(typeof(VideoCourse)))
             {
                 PlayerStats.Items.Add(typeof(VideoCourse));
-                PlayerStats.EventText = "Курс теперь у вас";
+                PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
             }
             else
-                PlayerStats.EventText = "Денег то нет, ну или ты крутой, курс уже у тебя";
+                PlayerStats.EventText = _badEvents[Random.Range(0, _badEvents.Count)];
             
             UpdatePrefabValue();
         }
