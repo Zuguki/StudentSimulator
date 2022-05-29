@@ -27,6 +27,7 @@ namespace DefaultNamespace.Shop
 
             if (_money >= BookPrice && !PlayerStats.Items.Contains(typeof(Book)))
             {
+                _money -= BookPrice;
                 PlayerStats.Items.Add(typeof(Book));
                 PlayerStats.EventText = _goodEvents[Random.Range(0, _goodEvents.Count)];
             }

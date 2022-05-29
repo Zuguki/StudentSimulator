@@ -43,7 +43,7 @@ namespace DefaultNamespace.Respect
         {
             var isGoodBuff = _science >= ScienceNeed;
 
-            buffValue = isGoodBuff ? Random.Range(30, 60) : 0;
+            buffValue = isGoodBuff ? Random.Range(25, 55) : 0;
             return isGoodBuff;
         }
          
