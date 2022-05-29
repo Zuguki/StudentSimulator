@@ -18,6 +18,8 @@ public class PlayerStats : MonoBehaviour
     public static bool HackSystem;
 
     private const float EventTime = 2f;
+    
+    private static bool _isItHackSystem;
 
     [SerializeField] private GameObject statObject;
     [SerializeField] private GameObject eventPrefab;
@@ -72,6 +74,8 @@ public class PlayerStats : MonoBehaviour
 
     private static void SetHackValues()
     {
+        _isItHackSystem = true;
+        
         PlayerPrefs.SetInt("science", 100000);
         PlayerPrefs.SetInt("meet", 100000);
         PlayerPrefs.SetInt("respect", 100000);
@@ -102,7 +106,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (!NeedsUpdate)
             return;
-
+        
         AddSuffering();
         ShowEvent();
         ChangeTime();
@@ -112,6 +116,10 @@ public class PlayerStats : MonoBehaviour
 
     private void AddSuffering()
     {
+        Debug.Log(_isItHackSystem);
+        if (_isItHackSystem)
+            return;
+        
         if (_science - _respect > 250 && Random.Range(0, _science - _respect) > 250)
         {
             EventText = "Зубрила, тебя не увожают и не дают учиться";
