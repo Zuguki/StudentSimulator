@@ -88,6 +88,8 @@ public class PlayerStats : MonoBehaviour
 
     private static void SetDefaultValues()
     {
+        _isItHackSystem = false;
+        
         PlayerPrefs.SetInt("science", 0);
         PlayerPrefs.SetInt("meet", 0);
         PlayerPrefs.SetInt("respect", 0);
@@ -116,7 +118,6 @@ public class PlayerStats : MonoBehaviour
 
     private void AddSuffering()
     {
-        Debug.Log(_isItHackSystem);
         if (_isItHackSystem)
             return;
         
