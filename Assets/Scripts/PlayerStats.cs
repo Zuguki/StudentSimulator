@@ -32,6 +32,8 @@ public class PlayerStats : MonoBehaviour
     private TextMeshProUGUI _timeStat;
 
     private TextMeshProUGUI _eventText;
+    
+    private Camera _camera = Camera.main;
 
     private int _science;
     private int _meet;
@@ -155,8 +157,17 @@ public class PlayerStats : MonoBehaviour
         eventPrefab.SetActive(true);
 
         yield return new WaitForSeconds(EventTime);
-        while (Input.mousePosition.x is > 100 and < 800 && Input.mousePosition.y is > 190 and < 305)
-            yield return new WaitForSeconds(.5f);
+        if (_camera is not null)
+        {
+            var xDistance = (_camera.ScreenToWorldPoint(Input.mousePosition) - eventPrefab.transform.position).x;
+            var yDistance = (_camera.ScreenToWorldPoint(Input.mousePosition) - eventPrefab.transform.position).y;
+            while (xDistance is > -2.75f and < 2.75f && yDistance is > -.45f and < .45f)
+            {
+                yield return new WaitForSeconds(.5f);
+                xDistance = (_camera.ScreenToWorldPoint(Input.mousePosition) - eventPrefab.transform.position).x;
+                yDistance = (_camera.ScreenToWorldPoint(Input.mousePosition) - eventPrefab.transform.position).y;
+            }
+        }
         
         eventPrefab.SetActive(false);
     }
