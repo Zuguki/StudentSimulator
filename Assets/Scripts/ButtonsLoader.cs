@@ -20,7 +20,7 @@ public class ButtonsLoader : MonoBehaviour
       new WriteOffClassmate(), new PrepareYourself(), new PrepareAccordingToTextbooks(),
       new AskForNotesFromClassmates(), new EngageInVideoCourse(), new HireTutor(),
       
-      new ShareLiquid(), new OpenDoorNight(), new HelpWithHW(),
+      new OpenDoorNight(), new ShareLiquid(), new HelpWithHW(),
       new MakeAnswersBase(), new GoToKillFish(), new OrderFood(),
       
       new EventFromUniversity(), new MentorGroupChats(), new MakeFriendsWithSopras(),

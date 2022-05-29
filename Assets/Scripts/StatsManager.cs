@@ -115,13 +115,22 @@ public class StatsManager : MonoBehaviour
     private void BuyLiquid()
     {
         SetStats();
-        if (_slider.value > _money || _slider.value == 0)
+        if (_slider.value == 0)
             return;
 
-        _liquid += (int) _slider.value;
-        _money -= (int) _liquidPrice * (int) _slider.value;
+        if (_slider.value * _liquidPrice > _money)
+        {
+            _liquid += _money / (int) _liquidPrice;
+            PlayerStats.EventText = $"Вы купили {_money / (int) _liquidPrice} жижи за {_money}";
+            _money = 0;
+        }
+        else
+        {
+            _liquid += (int) _slider.value; 
+            _money -= (int) _liquidPrice * (int) _slider.value;
+            PlayerStats.EventText = $"Вы купили {_slider.value} жижи за {(int) _liquidPrice * (int) _slider.value}";
+        }
 
-        PlayerStats.EventText = $"Вы купили {_slider.value} жижи за {(int) _liquidPrice * (int) _slider.value}";
 
         PlayerPrefs.SetInt("money", _money);
         PlayerPrefs.SetInt("liquid", _liquid);
@@ -131,13 +140,21 @@ public class StatsManager : MonoBehaviour
     private void SellLiquid()
     {
         SetStats();
-        if (_slider.value > _liquid || _slider.value == 0)
+        if (_slider.value == 0)
             return;
 
-        _liquid -= (int) _slider.value;
-        _money += (int) _liquidPrice * (int) _slider.value;
-        
-        PlayerStats.EventText = $"Вы продали {_slider.value} жижи за {(int) _liquidPrice * (int) _slider.value}";
+        if (_slider.value > _liquid)
+        {
+            _money += _liquid * (int) _liquidPrice;
+            PlayerStats.EventText = $"Вы продали {_liquid} жижи за {_liquid * (int) _liquidPrice}";
+            _liquid = 0;
+        }
+        else
+        {
+            _liquid -= (int) _slider.value; 
+            _money += (int) _liquidPrice * (int) _slider.value;
+            PlayerStats.EventText = $"Вы продали {_slider.value} жижи за {(int) _liquidPrice * (int) _slider.value}";
+        }
 
         PlayerPrefs.SetInt("money", _money);
         PlayerPrefs.SetInt("liquid", _liquid);

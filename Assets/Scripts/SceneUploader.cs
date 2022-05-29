@@ -42,8 +42,8 @@ public class SceneUploader : MonoBehaviour
         _back = gameObject.transform.GetChild(0).GetComponent<Button>();
         _stats = gameObject.transform.GetChild(1).GetComponent<Button>();
         _sciences = gameObject.transform.GetChild(2).GetComponent<Button>();
-        _respect = gameObject.transform.GetChild(3).GetComponent<Button>();
-        _meet = gameObject.transform.GetChild(4).GetComponent<Button>();
+        _meet = gameObject.transform.GetChild(3).GetComponent<Button>();
+        _respect = gameObject.transform.GetChild(4).GetComponent<Button>();
         _money = gameObject.transform.GetChild(5).GetComponent<Button>();
         _shop = gameObject.transform.GetChild(6).GetComponent<Button>();
     }
