@@ -146,6 +146,9 @@ public class PlayerStats : MonoBehaviour
         eventPrefab.SetActive(true);
 
         yield return new WaitForSeconds(EventTime);
+        while (Input.mousePosition.x is > 100 and < 800 && Input.mousePosition.y is > 190 and < 305)
+            yield return new WaitForSeconds(.5f);
+        
         eventPrefab.SetActive(false);
     }
 
