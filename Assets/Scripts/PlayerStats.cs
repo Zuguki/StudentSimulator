@@ -33,7 +33,7 @@ public class PlayerStats : MonoBehaviour
 
     private TextMeshProUGUI _eventText;
     
-    private Camera _camera = Camera.main;
+    private Camera _camera;
 
     private int _science;
     private int _meet;
@@ -66,6 +66,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        _camera = Camera.main;
         if (IsNewGame)
             SetDefaultValues();
         if (HackSystem)
