@@ -37,12 +37,12 @@ public class GameFinish : MonoBehaviour
         if (PlayerWon(out var wonFor))
         {
             _title.text = "Поздравляю";
-            _description.text = $"Вы успешно завершили перый семестр, вам помогли ваши: {Parse(wonFor)}";
+            _description.text = $"Вы успешно завершили первый семестр, вам помогли ваши: {Parse(wonFor)}";
         }
         else
         {
             _title.text = "Грустненько";
-            _description.text = "Ну, не получилось сдать экзамены тебе в этом семестре, тебе следует перепоступить";
+            _description.text = "Ну, не получилось сдать экзамены в этом семестре, тебе следует перепоступить";
         }
 
         _startNew.onClick.AddListener(UpdateUI);
