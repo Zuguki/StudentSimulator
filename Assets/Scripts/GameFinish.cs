@@ -48,17 +48,15 @@ public class GameFinish : MonoBehaviour
         _startNew.onClick.AddListener(UpdateUI);
         eventUI.SetActive(true);
         player.SetActive(false);
-        SceneUploader.NeedsOffButtons = true;
     }
 
     private void UpdateUI()
     {
         eventUI.SetActive(false);
         player.SetActive(true);
-        SceneUploader.NeedsOnButtons = true;
         
-        _needsUpdate = true;
         SceneUploader.LoadNewGame();
+        _needsUpdate = true;
         _startNew.onClick.RemoveAllListeners();
     }
 
