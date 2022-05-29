@@ -115,7 +115,7 @@ public class StatsManager : MonoBehaviour
     private void BuyLiquid()
     {
         SetStats();
-        if (_slider.value == 0)
+        if (_slider.value == 0 || _money == 0)
             return;
 
         if (_slider.value * _liquidPrice > _money)
@@ -140,7 +140,7 @@ public class StatsManager : MonoBehaviour
     private void SellLiquid()
     {
         SetStats();
-        if (_slider.value == 0)
+        if (_slider.value == 0 || _liquid == 0)
             return;
 
         if (_slider.value > _liquid)
